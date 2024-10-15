@@ -9,16 +9,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
 import java.io.File;
 
 public class NewTurn {
     private Stage primaryStage;
-    private Scene primaryScene;
     private Scene scene;
     private BorderPane root;
 
@@ -182,8 +180,27 @@ public class NewTurn {
             try {
                 primaryStage.close();
                 main.start(primaryStage);
+                Confirmation config = new Confirmation();
+                config.scene("A 12");
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
+            }
+        });
+
+        // Buttons
+        cirDisability.setOnMouseClicked(event -> {
+            if (cirDisability.getFill().equals(Color.WHITE)) {
+                cirDisability.setFill(Color.web("#0960ae"));
+            } else {
+                cirDisability.setFill(Color.WHITE);
+            }
+        });
+
+        cirPregnant.setOnMouseClicked(event -> {
+            if (cirPregnant.getFill().equals(Color.WHITE)) {
+                cirPregnant.setFill(Color.web("#0960ae"));
+            } else {
+                cirPregnant.setFill(Color.WHITE);
             }
         });
     }

@@ -108,3 +108,13 @@
     -fx-background-color: #005A9E;
     -fx-text-fill: white;
 }
+
+#root2 {
+    -fx-font-size: 60px;
+    -fx-background-color: white;
+    -fx-border-color: #009045;
+    -fx-border-width: 5px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 40px;
+    -fx-padding: 1px;
+}

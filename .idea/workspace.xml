@@ -7,8 +7,8 @@
     <list default="true" id="6aae1b04-5083-42a6-a635-6899221d4507" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/NewTurn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/NewTurn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/discapacitado (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/embarazada (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utilities/marca-de-verificacion.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +99,7 @@
       <updated>1728931166653</updated>
       <workItem from="1728931167714" duration="4943000" />
       <workItem from="1728994879288" duration="6798000" />
-      <workItem from="1729017115595" duration="10227000" />
+      <workItem from="1729017115595" duration="13947000" />
     </task>
     <servers />
   </component>
