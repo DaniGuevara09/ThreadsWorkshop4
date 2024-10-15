@@ -23,7 +23,12 @@ public class NewTurn {
     private BorderPane root;
 
     private Image image;
+    private Image icon1;
+    private Image icon2;
     private ImageView imageView;
+    private ImageView iconView1;
+    private ImageView iconView2;
+
     private VBox vBoxInfo;
 
     private HBox hBoxDisability;
@@ -54,7 +59,11 @@ public class NewTurn {
         scene = new Scene(root, screenWidth, screenHeight);
 
         image = new Image(new File("src/utilities/image.jpg").toURI().toString());
+        icon1 = new Image("file:src/utilities/disability.png");
+        icon2 = new Image("file:src/utilities/pregnant.png");
         imageView = new ImageView(image);
+        iconView1 = new ImageView(icon1);
+        iconView2 = new ImageView(icon2);
         vBoxInfo = new VBox();
 
         hBoxDisability = new HBox();
@@ -106,8 +115,14 @@ public class NewTurn {
 
     public void info(){
         hBoxInfo();
+        hLblDisability.getChildren().addAll(iconView1, lblDisability);
+        hLblDisability.setAlignment(Pos.CENTER);
+        hLblDisability.setSpacing(60);
         hBoxDisability.getChildren().addAll(cirDisability, hLblDisability);
 
+        hLblPregnant.getChildren().addAll(iconView2, lblPregnant);
+        hLblPregnant.setAlignment(Pos.CENTER);
+        hLblPregnant.setSpacing(60);
         hBoxPregnant.getChildren().addAll(cirPregnant, hLblPregnant);
         hBoxAge.getChildren().addAll(lblAge, comboAge);
 
@@ -115,6 +130,11 @@ public class NewTurn {
     }
 
     public void hBoxInfo(){
+        iconView1.setFitWidth(90);
+        iconView1.setFitHeight(90);
+        iconView2.setFitWidth(90);
+        iconView2.setFitHeight(90);
+
         cirDisability.setId("circle");
         cirPregnant.setId("circle");
         hLblDisability.setId("hBox");
