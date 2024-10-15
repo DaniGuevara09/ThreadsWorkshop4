@@ -70,3 +70,12 @@
     -fx-background-insets: 6px;
     -fx-padding: 2px;
 }
+
+#roundButton {
+    -fx-background-radius: 50%;        /* Hacer fondo circular */
+    -fx-border-radius: 50%;            /* Hacer borde circular */
+
+    -fx-padding: 0;                    /* Quitar padding interno */
+    -fx-border-color: #2E7D32;         /* Borde opcional */
+    -fx-border-width: 2px;
+}

@@ -59,6 +59,7 @@ public class Main extends Application {
                 .add(new File("src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css").toURI().toString());
         table();
         turn();
+        action();
 
         root.setId("root");
         root.setTop(titleLabel);
@@ -160,6 +161,14 @@ public class Main extends Application {
         centerHBox.setSpacing(180);
         centerHBox.setAlignment(Pos.CENTER);
         centerHBox.getChildren().addAll(turnVBox, table);
+    }
+
+    public void action(){
+        addTurnBtn.setOnAction(e -> {
+           NewTurn newTurn = new NewTurn();
+           newTurn.scene(primaryStage);
+           primaryStage.setScene(newTurn.getScene());
+        });
     }
 
     public static void main(String[] args) {
