@@ -1,0 +1,21 @@
+#root {
+    -fx-font-size: 30px;
+    -fx-background-color: #b8d1e7;
+}
+
+.button {
+    -fx-background-color: #0960AE;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 10px;
+}
+
+.button:hover{
+    -fx-background-color: #3e8fd8;
+}
+
+#title {
+
+}
