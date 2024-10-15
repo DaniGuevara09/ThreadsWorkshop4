@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -24,6 +26,10 @@ public class Main extends Application {
     private BorderPane root;
 
     private Label titleLabel;
+    private HBox centerHBox;
+    private VBox turnVBox;
+    private Label turnLabel;
+    private Label turnTitleLabel;
     private TableView<Patient> table;
     private Button addTurnBtn;
 
@@ -40,6 +46,10 @@ public class Main extends Application {
         scene = new Scene(root, screenWidth, screenHeight);
         titleLabel = new Label("Don Copito Medicines");
         addTurnBtn = new Button("Add Turn");
+        centerHBox = new HBox();
+        turnVBox = new VBox();
+        turnLabel = new Label("A 1");
+        turnTitleLabel = new Label("Turn");
         table = new TableView<>();
     }
 
@@ -48,16 +58,17 @@ public class Main extends Application {
         scene.getStylesheets()
                 .add(new File("src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css").toURI().toString());
         table();
+        turn();
+
+        root.setId("root");
+        root.setTop(titleLabel);
+        root.setCenter(centerHBox);
+        root.setBottom(addTurnBtn);
 
         titleLabel.setId("title");
         titleLabel.setPrefWidth(screenWidth);
         titleLabel.setPrefHeight(120);
         titleLabel.setAlignment(Pos.CENTER);
-
-        root.setId("root");
-        root.setTop(titleLabel);
-        root.setCenter(table);
-        root.setBottom(addTurnBtn);
 
         BorderPane.setAlignment(titleLabel, Pos.CENTER);
         BorderPane.setAlignment(table, Pos.CENTER);
@@ -65,7 +76,6 @@ public class Main extends Application {
 
         // Up, right, down, left
         BorderPane.setMargin(titleLabel, new Insets(0, 0, 30, 0));
-        BorderPane.setMargin(table, new Insets(30, 60, 30, 60));
         BorderPane.setMargin(addTurnBtn, new Insets(30, 60, 30, 0));
 
         primaryStage.setTitle("Don Copito");
@@ -74,30 +84,45 @@ public class Main extends Application {
     }
 
     public void table(){
-        TableColumn<Patient, String> id = new TableColumn<>("Identification number");
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        TableColumn<Patient, String> turn = new TableColumn<>("Turn");
+        TableColumn<Patient, String> turn = new TableColumn<>("Waiting List");
         turn.setCellValueFactory(turnNum -> {
             String turnStr = controller.getTurn();
             return new javafx.beans.property.SimpleStringProperty(turnStr);
         });
 
-        table.getColumns().addAll(id, turn);
-        centerCellContent(id);
+        table.getColumns().add(turn);
         centerCellContent(turn);
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        table.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Patient patient, boolean empty) {
+                super.updateItem(patient, empty);
+                if (getIndex() == 0 && !empty) {
+                    setStyle("-fx-background-color: #b8d1e7;");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
 
         // ______________________________________________________________________________________
         ObservableList<Patient> patients = FXCollections.observableArrayList(
                 new Patient(1, false, false, "34 - 34"),
                 new Patient(2, false, false, "34 - 34"),
                 new Patient(3, false, false, "34 - 34"),
+                new Patient(4, false, false, "34 - 34"),
+                new Patient(4, false, false, "34 - 34"),
                 new Patient(4, false, false, "34 - 34")
         );
 
         table.setItems(patients);
+        table.setPrefWidth(600);
+        table.setMaxHeight(660);
+        centerHBox.setMaxHeight(696);
+        HBox.setMargin(table, new Insets(30, 0, 30, 0));
+        HBox.setMargin(turnVBox, new Insets(30, 0, 30, 0));
     }
 
     private <T> void centerCellContent(TableColumn<Patient, T> column) {
@@ -114,6 +139,27 @@ public class Main extends Application {
                 }
             }
         });
+    }
+
+    public void turn(){
+        turnVBox.getChildren().addAll(turnTitleLabel, turnLabel);
+        turnTitleLabel.setId("turnTitle");
+        turnLabel.setId("turn");
+
+        turnTitleLabel.setPrefWidth(600);
+        turnTitleLabel.setPrefHeight(90);
+        turnTitleLabel.setAlignment(Pos.CENTER);
+
+        turnLabel.setPrefWidth(600);
+        turnLabel.setPrefHeight(360);
+        turnLabel.setAlignment(Pos.CENTER);
+
+        turnVBox.setSpacing(30);
+        turnVBox.setAlignment(Pos.CENTER);
+
+        centerHBox.setSpacing(180);
+        centerHBox.setAlignment(Pos.CENTER);
+        centerHBox.getChildren().addAll(turnVBox, table);
     }
 
     public static void main(String[] args) {

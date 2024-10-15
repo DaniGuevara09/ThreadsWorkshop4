@@ -4,12 +4,12 @@
 }
 
 .button {
-    -fx-background-color: #0960AE;
+    -fx-background-color: #0960ae;
     -fx-cursor: hand;
     -fx-text-fill: white;
     -fx-pref-width: 200px;
     -fx-pref-height: 40px;
-    -fx-background-radius: 10px;
+    -fx-background-radius: 30px;
 }
 
 .button:hover{
@@ -20,4 +20,53 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-color: #0960ae;
+    -fx-font-size: 60px;
+}
+
+#turnTitle {
+    -fx-background-color: #0960ae;
+    -fx-font-size: 60px;
+    -fx-text-fill: white;
+
+    -fx-border-color: #0960ae;
+    -fx-border-width: 2px;
+
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+#turn {
+    -fx-background-color: #0960ae;
+    -fx-font-size: 150px;
+    -fx-text-fill: white;
+
+    -fx-border-color: #0960ae;
+    -fx-border-width: 2px;
+
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+.table-view {
+    -fx-background-color: #e9f1f7;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-font-size: 60px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #0960ae;
+    -fx-pref-height: 90px;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-background-insets: 6px;
+    -fx-padding: 2px;
 }

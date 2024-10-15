@@ -18,6 +18,6 @@ public class PatientController {
     }
 
     public String getTurn(){
-        return "";
+        return "A 12";
     }
 }
