@@ -9,8 +9,15 @@ public class PatientController {
     private Comparator<Patient> comparator;
     private PriorityQueue<Patient> patients;
 
+    public PatientController() {
+    }
+
     public PatientController(Comparator<Patient> comparator) {
         this.comparator = comparator;
         this.patients = new PriorityQueue<>();
+    }
+
+    public String getTurn(){
+        return "";
     }
 }
