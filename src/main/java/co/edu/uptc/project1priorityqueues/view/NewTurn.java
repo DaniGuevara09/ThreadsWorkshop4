@@ -52,7 +52,7 @@ public class NewTurn {
         screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
         scene = new Scene(root, screenWidth, screenHeight);
 
-        image = new Image(new File("src/images/image.png").toURI().toString());
+        image = new Image(new File("src/utilities/image.jpg").toURI().toString());
         imageView = new ImageView(image);
         vBoxInfo = new VBox();
 
@@ -91,8 +91,11 @@ public class NewTurn {
         vBoxInfo.setPrefWidth(screenWidth/2);
         vBoxInfo.setAlignment(Pos.CENTER);
 
+        imageView.setPreserveRatio(true);
+        imageView.setFitWidth(screenWidth/2);
+
         root.setTop(title);
-        //root.setRight();
+        root.setRight(imageView);
         root.setLeft(vBoxInfo);
     }
 
