@@ -1,17 +1,18 @@
 package co.edu.uptc.project1priorityqueues.view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.File;
 
@@ -26,12 +27,12 @@ public class NewTurn {
     private VBox vBoxInfo;
 
     private HBox hBoxDisability;
-    private Button btnDisability;
+    private Circle cirDisability;
     private HBox hLblDisability;
     private Label lblDisability;
 
     private HBox hBoxPregnant;
-    private Button btnPregnant;
+    private Circle cirPregnant;
     private HBox hLblPregnant;
     private Label lblPregnant;
 
@@ -57,12 +58,12 @@ public class NewTurn {
         vBoxInfo = new VBox();
 
         hBoxDisability = new HBox();
-        btnDisability = new Button("");
+        cirDisability = new Circle(65);
         hLblDisability = new HBox();
         lblDisability = new Label("Disability");
 
         hBoxPregnant = new HBox();
-        btnPregnant = new Button("");
+        cirPregnant = new Circle(65);
         hLblPregnant = new HBox();
         lblPregnant = new Label("Pregnant");
 
@@ -89,10 +90,14 @@ public class NewTurn {
         title.setAlignment(Pos.CENTER);
 
         vBoxInfo.setPrefWidth(screenWidth/2);
-        vBoxInfo.setAlignment(Pos.CENTER);
+        vBoxInfo.setSpacing(90);
+        VBox.setMargin(btnConfirm, new Insets(0, (screenWidth / 2 - 200) / 2 , 0, (screenWidth / 2 - 200) / 2));
+        BorderPane.setMargin(vBoxInfo, new Insets(90, 0, 0, 0));
 
         imageView.setPreserveRatio(true);
         imageView.setFitWidth(screenWidth/2);
+
+        BorderPane.setAlignment(vBoxInfo, Pos.CENTER);
 
         root.setTop(title);
         root.setRight(imageView);
@@ -100,19 +105,55 @@ public class NewTurn {
     }
 
     public void info(){
-        hBoxDisability.getChildren().addAll(btnDisability, hLblDisability);
         hBoxInfo();
+        hBoxDisability.getChildren().addAll(cirDisability, hLblDisability);
 
-        hBoxPregnant.getChildren().addAll(btnPregnant, hLblPregnant);
+        hBoxPregnant.getChildren().addAll(cirPregnant, hLblPregnant);
         hBoxAge.getChildren().addAll(lblAge, comboAge);
 
         vBoxInfo.getChildren().addAll(hBoxDisability, hBoxPregnant, hBoxAge, btnConfirm);
     }
 
     public void hBoxInfo(){
-        btnDisability.setId("btnCircle");
-        btnDisability.setMinSize(100, 100);
-        btnDisability.setMaxSize(100, 100);
+        cirDisability.setId("circle");
+        cirPregnant.setId("circle");
+        hLblDisability.setId("hBox");
+        hLblPregnant.setId("hBox");
+        lblAge.setId("hBoxAge");
+        comboAge.setId("hBoxAge");
+
+        // 900 - 650
+        // 400 -
+
+        hBoxDisability.setSpacing(60);
+        hBoxPregnant.setSpacing(60);
+        hBoxAge.setSpacing(60);
+
+        hBoxDisability.setAlignment(Pos.CENTER);
+        hBoxPregnant.setAlignment(Pos.CENTER);
+        hBoxAge.setAlignment(Pos.CENTER);
+        lblAge.setAlignment(Pos.CENTER);
+        setCombo();
+    }
+
+    public void setCombo(){
+        comboAge.setValue("18 - 59");
+        comboAge.getItems().addAll("18 - 59", "≥ 60");
+
+        comboAge.setCellFactory(param -> {
+            ListCell<String> cell = new ListCell<>();
+            cell.setAlignment(Pos.CENTER);
+            cell.itemProperty().addListener((obs, oldItem, newItem) -> {
+                if (newItem != null) cell.setText(newItem);
+                else cell.setText(null);
+            });
+            return cell;
+        });
+
+        comboAge.setButtonCell(new ListCell<>() {{
+            setAlignment(Pos.CENTER);
+            itemProperty().addListener((obs, oldItem, newItem) -> setText(newItem != null ? (String) newItem : ""));
+        }});
     }
 
     public void actions(){

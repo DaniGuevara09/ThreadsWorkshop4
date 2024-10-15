@@ -71,11 +71,40 @@
     -fx-padding: 2px;
 }
 
-#roundButton {
-    -fx-background-radius: 50%;        /* Hacer fondo circular */
-    -fx-border-radius: 50%;            /* Hacer borde circular */
+#circle {
+    -fx-fill: white;
+    -fx-stroke: #0960ae;
+    -fx-stroke-width: 9px;
+}
 
-    -fx-padding: 0;                    /* Quitar padding interno */
-    -fx-border-color: #2E7D32;         /* Borde opcional */
-    -fx-border-width: 2px;
+#hBox {
+    -fx-background-color: white;
+    -fx-pref-width: 650px;
+    -fx-pref-height: 130px;
+    -fx-background-radius: 30px;
+}
+
+#hBoxAge {
+    -fx-background-color: white;
+    -fx-pref-width: 290px;
+    -fx-pref-height: 130px;
+    -fx-background-radius: 30px;
+}
+
+.combo-box {
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: white;
+    -fx-border-width: 5;
+    -fx-padding: 5;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #323233;
+    -fx-background-color: white;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #005A9E;
+    -fx-text-fill: white;
 }
