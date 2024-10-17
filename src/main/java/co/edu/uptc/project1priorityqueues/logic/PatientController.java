@@ -20,4 +20,8 @@ public class PatientController {
     public String getTurn(){
         return "A 12";
     }
+
+    public boolean addPatient(boolean disabled, boolean pregnant, String ageRange){
+        return false;
+    }
 }

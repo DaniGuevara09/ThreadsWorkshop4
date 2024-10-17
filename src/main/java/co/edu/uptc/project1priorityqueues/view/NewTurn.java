@@ -1,5 +1,6 @@
 package co.edu.uptc.project1priorityqueues.view;
 
+import co.edu.uptc.project1priorityqueues.logic.PatientController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,9 +43,14 @@ public class NewTurn {
     private HBox hBoxAge;
     private Label lblAge;
     private ComboBox comboAge;
+    private String comboOption;
 
     private Label title;
     private Button btnConfirm;
+
+    private boolean isDisability;
+    private boolean isPregnant;
+    private boolean ageConfirmation;
 
     private static double screenWidth;
     private static double screenHeight;
@@ -77,9 +83,14 @@ public class NewTurn {
         hBoxAge = new HBox();
         lblAge = new Label("Age Range");
         comboAge = new ComboBox();
+        comboOption = "18 - 59";
 
         title = new Label("New Turn");
         btnConfirm = new Button("Confirm");
+
+        isDisability = false;
+        isPregnant = false;
+        ageConfirmation = false;
     }
 
     public void scene(Stage primaryStage) {
@@ -176,34 +187,51 @@ public class NewTurn {
 
     public void actions(){
         btnConfirm.setOnAction(e -> {
-            Main main = new Main();
-            try {
-                primaryStage.close();
-                main.start(primaryStage);
-                Confirmation config = new Confirmation();
-                config.scene("A 12");
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
+            if (validation()) {
+                Main main = new Main();
+                PatientController controller = new PatientController();
+
+                try {
+                    controller.addPatient(isDisability, isPregnant, comboAge.getValue().toString());
+
+                    primaryStage.close();
+                    main.start(primaryStage);
+
+                    Confirmation config = new Confirmation();
+                    config.scene("A 12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
-
         // Buttons
         cirDisability.setOnMouseClicked(event -> {
             if (cirDisability.getFill().equals(Color.WHITE)) {
                 cirDisability.setFill(Color.web("#0960ae"));
+                isDisability = true;
             } else {
                 cirDisability.setFill(Color.WHITE);
+                isDisability = false;
             }
+            validation();
         });
 
         cirPregnant.setOnMouseClicked(event -> {
             if (cirPregnant.getFill().equals(Color.WHITE)) {
                 cirPregnant.setFill(Color.web("#0960ae"));
+                isPregnant = true;
             } else {
                 cirPregnant.setFill(Color.WHITE);
+                isPregnant = false;
             }
+            validation();
         });
     }
+
+    public boolean validation(){
+        return !isPregnant || !comboAge.getValue().equals("≥ 60");
+    }
+
     public Scene getScene() {
         return scene;
     }
