@@ -20,10 +20,10 @@ public class PatientController {
     public PatientController(Comparator<Patient> comparator) {
         this.patients = new PriorityQueue<>(comparator);
 
-        contDisabled = 0;
-        contPregnant = 0;
-        contAge = 0;
-        contOther = 0;
+        contDisabled = 1;
+        contPregnant = 1;
+        contAge = 1;
+        contOther = 1;
     }
 
     public List<String> getTurn(){
@@ -35,25 +35,26 @@ public class PatientController {
         return turnList;
     }
 
-    public void addPatient(boolean disabled, boolean pregnant, String ageRange){
+    public String addPatient(boolean disabled, boolean pregnant, String ageRange){
         Patient newPatient = new Patient(disabled, pregnant, ageRange);
-        newTurn(newPatient);
-        patients.offer(newPatient);
+        patients.add(newPatient);
+        return newTurn(newPatient);
     }
 
-    public void newTurn(Patient patient){
+    public String newTurn(Patient patient){
         String turn;
 
         if (patient.isDisabled()){
-            turn = "A - " + contDisabled++;
+            turn = "A" + contDisabled++;
         } else if (patient.isPregnant()){
-            turn = "B - " + contPregnant++;
+            turn = "B" + contPregnant++;
         } else if (patient.getAgeRange().equals("≥ 60")){
-            turn = "C - " + contAge++;
+            turn = "C" + contAge++;
         } else {
-            turn = "D - " + contOther++;
+            turn = "D" + contOther++;
         }
         patient.setTurn(turn);
+        return  turn;
     }
 
     public static class PatientComparator implements Comparator<Patient> {

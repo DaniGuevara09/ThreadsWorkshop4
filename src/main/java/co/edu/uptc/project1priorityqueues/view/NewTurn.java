@@ -193,16 +193,14 @@ public class NewTurn {
             if (validation()) {
                 Main main = new Main();
                 try {
-                    System.out.println("Controler 2: " + controller);
-
-                    controller.addPatient(isDisability, isPregnant, comboAge.getValue().toString());
+                    String turn = controller.addPatient(isDisability, isPregnant, comboAge.getValue().toString());
 
                     primaryStage.close();
                     main.setController(controller);
                     main.start(primaryStage);
 
                     Confirmation config = new Confirmation();
-                    config.scene("A 12");
+                    config.scene(turn);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }

@@ -40,7 +40,7 @@ public class Confirmation {
     }
 
     public void scene(String turn) {
-        label.setText("You turn is " + turn); // Set the message to be displayed
+        label.setText("You turn is: " + turn);
         scene.getStylesheets()
                 .add(new File("src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css").toURI().toString());
 

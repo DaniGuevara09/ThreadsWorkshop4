@@ -86,7 +86,7 @@ public class Main extends Application {
 
     public void table(){
         System.out.println("Holi: " + controller.getTurn());
-        System.out.println("Controler 1: " + controller);
+
         for (int i = 0; i < controller.getTurn().size(); i++) {
             System.out.println(controller.getTurn().get(i));
         }
