@@ -1,0 +1,120 @@
+#root {
+    -fx-font-size: 30px;
+    -fx-background-color: #e9f1f7;
+}
+
+.button {
+    -fx-background-color: #0960ae;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 30px;
+}
+
+.button:hover{
+    -fx-background-color: #3e8fd8;
+}
+
+#title {
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #0960ae;
+    -fx-font-size: 60px;
+}
+
+#turnTitle {
+    -fx-background-color: #0960ae;
+    -fx-font-size: 60px;
+    -fx-text-fill: white;
+
+    -fx-border-color: #0960ae;
+    -fx-border-width: 2px;
+
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+#turn {
+    -fx-background-color: #0960ae;
+    -fx-font-size: 150px;
+    -fx-text-fill: white;
+
+    -fx-border-color: #0960ae;
+    -fx-border-width: 2px;
+
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+.table-view {
+    -fx-background-color: #e9f1f7;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-font-size: 60px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #0960ae;
+    -fx-pref-height: 90px;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-background-insets: 6px;
+    -fx-padding: 2px;
+}
+
+#circle {
+    -fx-fill: white;
+    -fx-stroke: #0960ae;
+    -fx-stroke-width: 9px;
+}
+
+#hBox {
+    -fx-background-color: white;
+    -fx-pref-width: 650px;
+    -fx-pref-height: 130px;
+    -fx-background-radius: 30px;
+}
+
+#hBoxAge {
+    -fx-background-color: white;
+    -fx-pref-width: 290px;
+    -fx-pref-height: 130px;
+    -fx-background-radius: 30px;
+}
+
+.combo-box {
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: white;
+    -fx-border-width: 5;
+    -fx-padding: 5;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #323233;
+    -fx-background-color: white;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #005A9E;
+    -fx-text-fill: white;
+}
+
+#root2 {
+    -fx-font-size: 60px;
+    -fx-background-color: white;
+    -fx-border-color: #009045;
+    -fx-border-width: 5px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 40px;
+    -fx-padding: 1px;
+}
