@@ -111,7 +111,7 @@ public class NewTurn {
         title.setAlignment(Pos.CENTER);
 
         vBoxInfo.setPrefWidth(screenWidth/2);
-        vBoxInfo.setSpacing(90);
+        vBoxInfo.setSpacing(20);
         VBox.setMargin(btnConfirm, new Insets(0, (screenWidth / 2 - 200) / 2 , 0, (screenWidth / 2 - 200) / 2));
         BorderPane.setMargin(vBoxInfo, new Insets(90, 0, 0, 0));
 
