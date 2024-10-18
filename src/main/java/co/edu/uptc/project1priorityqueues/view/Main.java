@@ -87,12 +87,8 @@ public class Main extends Application {
     public void table(){
         System.out.println("Holi: " + controller.getTurn());
 
-        for (int i = 0; i < controller.getTurn().size(); i++) {
-            System.out.println(controller.getTurn().get(i));
-        }
         TableColumn<Patient, String> turn = new TableColumn<>("Waiting List");
         turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
-
 
         table.getColumns().add(turn);
         centerCellContent(turn);
@@ -113,12 +109,12 @@ public class Main extends Application {
 
         // ______________________________________________________________________________________
         ObservableList<Patient> patients = FXCollections.observableArrayList(
-                new Patient(false, false, "34 - 34"),
-                new Patient(false, false, "34 - 34"),
-                new Patient(false, false, "34 - 34"),
-                new Patient(false, false, "34 - 34"),
-                new Patient(false, false, "34 - 34"),
-                new Patient(false, false, "34 - 34")
+                new Patient(1, false, false, "34 - 34"),
+                new Patient(2, false, false, "34 - 34"),
+                new Patient(3,false, false, "34 - 34"),
+                new Patient(4, false, false, "34 - 34"),
+                new Patient(5, false, false, "34 - 34"),
+                new Patient(6, false, false, "34 - 34")
         );
 
         table.setItems(patients);
