@@ -5,7 +5,8 @@ import co.edu.uptc.project1priorityqueues.model.Patient;
 import java.util.*;
 
 public class PatientController {
-    private TreeSet<Patient> patients;
+    //private TreeSet<Patient> patients;
+    private PriorityQueue<Patient> patients;
 
     private int contDisabled;
     private int contPregnant;
@@ -15,8 +16,8 @@ public class PatientController {
     public PatientController() {}
 
     public PatientController(Comparator<Patient> comparator) {
-        //this.patients = new PriorityQueue<>(comparator);
-        patients = new TreeSet<>(comparator);
+        this.patients = new PriorityQueue<>(comparator);
+        //patients = new TreeSet<>(comparator);
 
         contDisabled = 1;
         contPregnant = 1;
@@ -33,19 +34,26 @@ public class PatientController {
         return turnList;
     }
 
-    public List<Patient> getPatients() {
-        return new ArrayList<>(patients);
+    public ArrayList<Patient> getPatients() {
+        PriorityQueue<Patient> aux = new PriorityQueue<>(patients);
+        ArrayList<Patient> patientList = new ArrayList<>();
+
+        while (!aux.isEmpty()) {
+            patientList.add(aux.poll());
+        }
+        return patientList;
     }
 
     public void deleteFirst(){
-        patients.pollFirst();
+        //patients.pollFirst();
+        patients.poll();
     }
 
     public String addPatient(boolean disabled, boolean pregnant, String ageRange){
         Patient newPatient = new Patient(disabled, pregnant, ageRange);
         String turn = newTurn(newPatient);
 
-        patients.add(newPatient);
+        patients.offer(newPatient);
         return turn;
     }
 
@@ -77,7 +85,6 @@ public class PatientController {
             } else if (p1.getTurn().compareTo(p2.getTurn()) < 0){
                 return -1;
             } else {
-
                 if (p1.getTurn().substring(1).compareTo(p2.getTurn().substring(1)) > 0){
                     return 1;
                 } else{
