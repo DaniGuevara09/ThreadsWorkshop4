@@ -15,8 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.io.File;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -48,7 +48,7 @@ public class Main extends Application {
         addTurnBtn = new Button("Add Turn");
         centerHBox = new HBox();
         turnVBox = new VBox();
-        turnLabel = new Label("A 1");
+        turnLabel = new Label(" - ");
         turnTitleLabel = new Label("Turn");
         table = new TableView<>();
     }
@@ -85,12 +85,17 @@ public class Main extends Application {
     }
 
     public void table(){
-        System.out.println("Holi: " + controller.getTurn());
+        //System.out.println("Holi: " + controller.getTurn());
 
         TableColumn<Patient, String> turn = new TableColumn<>("Waiting List");
         turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
 
         table.getColumns().add(turn);
+
+        List<Patient> patientList = controller.getPatients();
+
+        ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
+        table.setItems(patients);
         centerCellContent(turn);
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -107,17 +112,6 @@ public class Main extends Application {
             }
         });
 
-        // ______________________________________________________________________________________
-        ObservableList<Patient> patients = FXCollections.observableArrayList(
-                new Patient(1, false, false, "34 - 34"),
-                new Patient(2, false, false, "34 - 34"),
-                new Patient(3,false, false, "34 - 34"),
-                new Patient(4, false, false, "34 - 34"),
-                new Patient(5, false, false, "34 - 34"),
-                new Patient(6, false, false, "34 - 34")
-        );
-
-        table.setItems(patients);
         table.setPrefWidth(600);
         table.setMaxHeight(660);
         centerHBox.setMaxHeight(696);
@@ -160,13 +154,24 @@ public class Main extends Application {
         centerHBox.setSpacing(180);
         centerHBox.setAlignment(Pos.CENTER);
         centerHBox.getChildren().addAll(turnVBox, table);
+
+        try {
+            turnLabel.setText(controller.getTurn().getFirst());
+        } catch (Exception _) {
+
+        }
     }
 
     public void action(){
         addTurnBtn.setOnAction(e -> {
-           NewTurn newTurn = new NewTurn();
-           newTurn.scene(primaryStage, controller);
-           primaryStage.setScene(newTurn.getScene());
+
+            if (controller.getPatients().size() == 6){
+                controller.deleteFirst();
+            }
+
+            NewTurn newTurn = new NewTurn();
+            newTurn.scene(primaryStage, controller);
+            primaryStage.setScene(newTurn.getScene());
         });
     }
 

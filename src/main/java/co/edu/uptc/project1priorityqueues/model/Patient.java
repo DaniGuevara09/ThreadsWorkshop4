@@ -1,7 +1,6 @@
 package co.edu.uptc.project1priorityqueues.model;
 
 public class Patient {
-    private int id;
     private String turn;
     private boolean disabled;
     private boolean pregnant;
@@ -10,19 +9,10 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int id, boolean disabled, boolean pregnant, String ageRange) {
-        this.id = id;
+    public Patient(boolean disabled, boolean pregnant, String ageRange) {
         this.disabled = disabled;
         this.pregnant = pregnant;
         this.ageRange = ageRange;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTurn() {

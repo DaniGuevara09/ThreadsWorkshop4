@@ -12,8 +12,6 @@ public class PatientController {
     private int contAge;
     private int contOther;
 
-    private int contId;
-
     public PatientController() {}
 
     public PatientController(Comparator<Patient> comparator) {
@@ -24,8 +22,6 @@ public class PatientController {
         contPregnant = 1;
         contAge = 1;
         contOther = 1;
-
-        contId = 0;
     }
 
     public List<String> getTurn(){
@@ -37,12 +33,19 @@ public class PatientController {
         return turnList;
     }
 
+    public List<Patient> getPatients() {
+        return new ArrayList<>(patients);
+    }
+
+    public void deleteFirst(){
+        patients.pollFirst();
+    }
+
     public String addPatient(boolean disabled, boolean pregnant, String ageRange){
-        Patient newPatient = new Patient(contId, disabled, pregnant, ageRange);
+        Patient newPatient = new Patient(disabled, pregnant, ageRange);
         String turn = newTurn(newPatient);
 
         patients.add(newPatient);
-        contId++;
         return turn;
     }
 
@@ -66,8 +69,8 @@ public class PatientController {
         @Override
         public int compare(Patient p1, Patient p2) {
 
-            System.out.println(p1.getTurn());
-            System.out.println(p2.getTurn());
+            //System.out.println(p1.getTurn());
+            //System.out.println(p2.getTurn());
 
             if (p1.getTurn().compareTo(p2.getTurn()) > 0){
                 return 1;
