@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 public class NewTurn {
+    private PatientController controller;
     private Stage primaryStage;
     private Scene scene;
     private BorderPane root;
@@ -56,6 +57,7 @@ public class NewTurn {
     private static double screenHeight;
 
     public NewTurn() {
+        controller = new PatientController();
         primaryStage = new Stage();
         root = new BorderPane();
         screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
@@ -93,7 +95,8 @@ public class NewTurn {
         ageConfirmation = false;
     }
 
-    public void scene(Stage primaryStage) {
+    public void scene(Stage primaryStage, PatientController controller) {
+        this.controller = controller;
         this.primaryStage = primaryStage;
         scene.getStylesheets()
                 .add(new File("src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css").toURI().toString());
@@ -189,12 +192,13 @@ public class NewTurn {
         btnConfirm.setOnAction(e -> {
             if (validation()) {
                 Main main = new Main();
-                PatientController controller = new PatientController();
-
                 try {
+                    System.out.println("Controler 2: " + controller);
+
                     controller.addPatient(isDisability, isPregnant, comboAge.getValue().toString());
 
                     primaryStage.close();
+                    main.setController(controller);
                     main.start(primaryStage);
 
                     Confirmation config = new Confirmation();
@@ -234,5 +238,9 @@ public class NewTurn {
 
     public Scene getScene() {
         return scene;
+    }
+
+    public PatientController getController() {
+        return controller;
     }
 }

@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,7 +20,8 @@ import java.io.File;
 
 public class Main extends Application {
 
-    private PatientController controller;
+    private PatientController controller = new PatientController(new PatientController.PatientComparator());
+
     private Stage primaryStage;
     private Scene scene;
     private BorderPane root;
@@ -36,7 +38,6 @@ public class Main extends Application {
     private static double screenHeight;
 
     public Main() {
-        controller = new PatientController();
         primaryStage = new Stage();
         root = new BorderPane();
         screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
@@ -84,11 +85,14 @@ public class Main extends Application {
     }
 
     public void table(){
+        System.out.println("Holi: " + controller.getTurn());
+        System.out.println("Controler 1: " + controller);
+        for (int i = 0; i < controller.getTurn().size(); i++) {
+            System.out.println(controller.getTurn().get(i));
+        }
         TableColumn<Patient, String> turn = new TableColumn<>("Waiting List");
-        turn.setCellValueFactory(turnNum -> {
-            String turnStr = controller.getTurn();
-            return new javafx.beans.property.SimpleStringProperty(turnStr);
-        });
+        turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
+
 
         table.getColumns().add(turn);
         centerCellContent(turn);
@@ -109,12 +113,12 @@ public class Main extends Application {
 
         // ______________________________________________________________________________________
         ObservableList<Patient> patients = FXCollections.observableArrayList(
-                new Patient(1, false, false, "34 - 34"),
-                new Patient(2, false, false, "34 - 34"),
-                new Patient(3, false, false, "34 - 34"),
-                new Patient(4, false, false, "34 - 34"),
-                new Patient(4, false, false, "34 - 34"),
-                new Patient(4, false, false, "34 - 34")
+                new Patient(false, false, "34 - 34"),
+                new Patient(false, false, "34 - 34"),
+                new Patient(false, false, "34 - 34"),
+                new Patient(false, false, "34 - 34"),
+                new Patient(false, false, "34 - 34"),
+                new Patient(false, false, "34 - 34")
         );
 
         table.setItems(patients);
@@ -165,9 +169,13 @@ public class Main extends Application {
     public void action(){
         addTurnBtn.setOnAction(e -> {
            NewTurn newTurn = new NewTurn();
-           newTurn.scene(primaryStage);
+           newTurn.scene(primaryStage, controller);
            primaryStage.setScene(newTurn.getScene());
         });
+    }
+
+    public void setController(PatientController controller) {
+        this.controller = controller;
     }
 
     public static void main(String[] args) {
