@@ -13,19 +13,19 @@
 }
 
 .button:hover{
-    -fx-background-color: #3e8fd8;
-}
+    -fx-background-color: #074983;
+    -fx-text-fill: white;}
 
 #title {
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-color: #0960ae;
-    -fx-font-size: 60px;
+    -fx-font-size: 50px;
 }
 
 #turnTitle {
     -fx-background-color: #0960ae;
-    -fx-font-size: 60px;
+    -fx-font-size: 30px;
     -fx-text-fill: white;
 
     -fx-border-color: #0960ae;
@@ -61,7 +61,8 @@
 
 .table-view .column-header {
     -fx-background-color: #0960ae;
-    -fx-pref-height: 90px;
+    -fx-pref-height: 0px;
+    -fx-max-height: 0;
 }
 
 .table-row-cell {

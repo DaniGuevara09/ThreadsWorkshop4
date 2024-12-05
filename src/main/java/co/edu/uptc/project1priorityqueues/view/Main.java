@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -27,11 +28,29 @@ public class Main extends Application {
     private BorderPane root;
 
     private Label titleLabel;
+    private StackPane stackPane;
     private HBox centerHBox;
-    private VBox turnVBox;
-    private Label turnLabel;
-    private Label turnTitleLabel;
-    private TableView<Patient> table;
+
+    private VBox turnVBox1;
+    private Label turnLabel1;
+    private Label turnTitleLabel1;
+    private TableView<Patient> table1;
+    
+    private VBox turnVBox2;
+    private Label turnLabel2;
+    private Label turnTitleLabel2;
+    private TableView<Patient> table2;
+
+    private VBox turnVBox3;
+    private Label turnLabel3;
+    private Label turnTitleLabel3;
+    private TableView<Patient> table3;
+
+    private VBox turnVBox4;
+    private Label turnLabel4;
+    private Label turnTitleLabel4;
+    private TableView<Patient> table4;
+    
     private Button addTurnBtn;
 
     private static double screenWidth;
@@ -43,36 +62,68 @@ public class Main extends Application {
         screenWidth = Screen.getPrimary().getVisualBounds().getWidth();
         screenHeight = Screen.getPrimary().getVisualBounds().getHeight();
 
+        stackPane = new StackPane();
         scene = new Scene(root, screenWidth, screenHeight);
         titleLabel = new Label("Don Copito Medicines");
         addTurnBtn = new Button("Add Turn");
         centerHBox = new HBox();
-        turnVBox = new VBox();
-        turnLabel = new Label(" - ");
-        turnTitleLabel = new Label("Turn");
-        table = new TableView<>();
+        
+        turnVBox1 = new VBox();
+        turnLabel1 = new Label(" - ");
+        turnTitleLabel1 = new Label("Window 1");
+        table1 = new TableView<>();
+
+        turnVBox2 = new VBox();
+        turnLabel2 = new Label(" - ");
+        turnTitleLabel2 = new Label("Window 2");
+        table2 = new TableView<>();
+
+        turnVBox3 = new VBox();
+        turnLabel3 = new Label(" - ");
+        turnTitleLabel3 = new Label("Window 3");
+        table3 = new TableView<>();
+
+        turnVBox4 = new VBox();
+        turnLabel4 = new Label(" - ");
+        turnTitleLabel4 = new Label("Window 4");
+        table4 = new TableView<>();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         scene.getStylesheets()
                 .add(new File("src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css").toURI().toString());
-        table();
-        turn();
+        table1();
+        table2();
+        table3();
+        table4();
+
+        turn1();
+        turn2();
+        turn3();
+        turn4();
+
         action();
 
+        stackPane.getChildren().addAll(titleLabel, addTurnBtn);
+        StackPane.setAlignment(addTurnBtn, Pos.CENTER_RIGHT);
+        StackPane.setMargin(addTurnBtn, new Insets(0, 10, 0, 0));
+
         root.setId("root");
-        root.setTop(titleLabel);
+        root.setTop(stackPane);
         root.setCenter(centerHBox);
-        root.setBottom(addTurnBtn);
 
         titleLabel.setId("title");
         titleLabel.setPrefWidth(screenWidth);
         titleLabel.setPrefHeight(120);
         titleLabel.setAlignment(Pos.CENTER);
 
+        centerHBox.getChildren().addAll(turnVBox1, turnVBox2, turnVBox3, turnVBox4);
+        centerHBox.setSpacing(100);
+        centerHBox.setAlignment(Pos.CENTER);
+
         BorderPane.setAlignment(titleLabel, Pos.CENTER);
-        BorderPane.setAlignment(table, Pos.CENTER);
+        BorderPane.setAlignment(table1, Pos.CENTER);
         BorderPane.setAlignment(addTurnBtn, Pos.CENTER_RIGHT);
 
         // Up, right, down, left
@@ -84,23 +135,21 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void table(){
+    public void table1(){
         //System.out.println("Holi: " + controller.getTurn());
-
-        TableColumn<Patient, String> turn = new TableColumn<>("Waiting List");
+        TableColumn<Patient, String> turn = new TableColumn<>();
         turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
 
-        table.getColumns().add(turn);
+        table1.getColumns().add(turn);
 
         List<Patient> patientList = controller.getPatients();
 
         ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
-        table.setItems(patients);
-        centerCellContent(turn);
+        table1.setItems(patients);
 
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        table1.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        table.setRowFactory(tv -> new TableRow<>() {
+        table1.setRowFactory(tv -> new TableRow<>() {
             @Override
             protected void updateItem(Patient patient, boolean empty) {
                 super.updateItem(patient, empty);
@@ -112,11 +161,106 @@ public class Main extends Application {
             }
         });
 
-        table.setPrefWidth(600);
-        table.setMaxHeight(660);
-        centerHBox.setMaxHeight(696);
-        HBox.setMargin(table, new Insets(30, 0, 30, 0));
-        HBox.setMargin(turnVBox, new Insets(30, 0, 30, 0));
+        table1.setPrefWidth(250);
+        table1.setMaxHeight(250);
+        HBox.setMargin(table1, new Insets(30, 0, 30, 0));
+        HBox.setMargin(turnVBox1, new Insets(30, 0, 30, 0));
+    }
+
+    public void table2(){
+        //System.out.println("Holi: " + controller.getTurn());
+        TableColumn<Patient, String> turn = new TableColumn<>();
+        turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
+
+        table2.getColumns().add(turn);
+
+        List<Patient> patientList = controller.getPatients();
+
+        ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
+        table2.setItems(patients);
+
+        table2.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        table2.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Patient patient, boolean empty) {
+                super.updateItem(patient, empty);
+                if (getIndex() == 0 && !empty) {
+                    setStyle("-fx-background-color: #b8d1e7;");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
+
+        table2.setPrefWidth(250);
+        table2.setMaxHeight(250);
+        HBox.setMargin(table2, new Insets(30, 0, 30, 0));
+        HBox.setMargin(turnVBox2, new Insets(30, 0, 30, 0));
+    }
+
+    public void table3(){
+        //System.out.println("Holi: " + controller.getTurn());
+        TableColumn<Patient, String> turn = new TableColumn<>();
+        turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
+
+        table3.getColumns().add(turn);
+
+        List<Patient> patientList = controller.getPatients();
+
+        ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
+        table3.setItems(patients);
+
+        table3.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        table3.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Patient patient, boolean empty) {
+                super.updateItem(patient, empty);
+                if (getIndex() == 0 && !empty) {
+                    setStyle("-fx-background-color: #b8d1e7;");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
+
+        table3.setPrefWidth(250);
+        table3.setMaxHeight(250);
+        HBox.setMargin(table3, new Insets(30, 0, 30, 0));
+        HBox.setMargin(turnVBox3, new Insets(30, 0, 30, 0));
+    }
+
+    public void table4(){
+        //System.out.println("Holi: " + controller.getTurn());
+        TableColumn<Patient, String> turn = new TableColumn<>();
+        turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
+
+        table4.getColumns().add(turn);
+
+        List<Patient> patientList = controller.getPatients();
+
+        ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
+        table4.setItems(patients);
+
+        table4.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        table4.setRowFactory(tv -> new TableRow<>() {
+            @Override
+            protected void updateItem(Patient patient, boolean empty) {
+                super.updateItem(patient, empty);
+                if (getIndex() == 0 && !empty) {
+                    setStyle("-fx-background-color: #b8d1e7;");
+                } else {
+                    setStyle("");
+                }
+            }
+        });
+
+        table4.setPrefWidth(250);
+        table4.setMaxHeight(250);
+        HBox.setMargin(table4, new Insets(30, 0, 30, 0));
+        HBox.setMargin(turnVBox4, new Insets(30, 0, 30, 0));
     }
 
     private <T> void centerCellContent(TableColumn<Patient, T> column) {
@@ -135,28 +279,93 @@ public class Main extends Application {
         });
     }
 
-    public void turn(){
-        turnVBox.getChildren().addAll(turnTitleLabel, turnLabel);
-        turnTitleLabel.setId("turnTitle");
-        turnLabel.setId("turn");
+    public void turn1(){
+        turnVBox1.getChildren().addAll(turnTitleLabel1, turnLabel1, table1);
+        turnTitleLabel1.setId("turnTitle");
+        turnLabel1.setId("turn");
 
-        turnTitleLabel.setPrefWidth(600);
-        turnTitleLabel.setPrefHeight(90);
-        turnTitleLabel.setAlignment(Pos.CENTER);
+        turnTitleLabel1.setPrefWidth(250);
+        turnTitleLabel1.setMinHeight(80);
+        turnTitleLabel1.setAlignment(Pos.CENTER);
 
-        turnLabel.setPrefWidth(600);
-        turnLabel.setPrefHeight(360);
-        turnLabel.setAlignment(Pos.CENTER);
+        turnLabel1.setPrefWidth(250);
+        turnLabel1.setMinHeight(200);
+        turnLabel1.setAlignment(Pos.CENTER);
 
-        turnVBox.setSpacing(30);
-        turnVBox.setAlignment(Pos.CENTER);
-
-        centerHBox.setSpacing(180);
-        centerHBox.setAlignment(Pos.CENTER);
-        centerHBox.getChildren().addAll(turnVBox, table);
+        turnVBox1.setSpacing(10);
+        turnVBox1.setAlignment(Pos.CENTER);
 
         try {
-            turnLabel.setText(controller.getTurn().getFirst());
+            turnLabel1.setText(controller.getTurn().getFirst());
+        } catch (Exception _) {
+
+        }
+    }
+
+    public void turn2(){
+        turnVBox2.getChildren().addAll(turnTitleLabel2, turnLabel2, table2);
+        turnTitleLabel2.setId("turnTitle");
+        turnLabel2.setId("turn");
+
+        turnTitleLabel2.setPrefWidth(250);
+        turnTitleLabel2.setMinHeight(80);
+        turnTitleLabel2.setAlignment(Pos.CENTER);
+
+        turnLabel2.setPrefWidth(250);
+        turnLabel2.setMinHeight(200);
+        turnLabel2.setAlignment(Pos.CENTER);
+
+        turnVBox2.setSpacing(10);
+        turnVBox2.setAlignment(Pos.CENTER);
+
+        try {
+            turnLabel2.setText(controller.getTurn().getFirst());
+        } catch (Exception _) {
+
+        }
+    }
+
+    public void turn3(){
+        turnVBox3.getChildren().addAll(turnTitleLabel3, turnLabel3, table3);
+        turnTitleLabel3.setId("turnTitle");
+        turnLabel3.setId("turn");
+
+        turnTitleLabel3.setPrefWidth(250);
+        turnTitleLabel3.setMinHeight(80);
+        turnTitleLabel3.setAlignment(Pos.CENTER);
+
+        turnLabel3.setPrefWidth(250);
+        turnLabel3.setMinHeight(200);
+        turnLabel3.setAlignment(Pos.CENTER);
+
+        turnVBox3.setSpacing(10);
+        turnVBox3.setAlignment(Pos.CENTER);
+
+        try {
+            turnLabel3.setText(controller.getTurn().getFirst());
+        } catch (Exception _) {
+
+        }
+    }
+
+    public void turn4(){
+        turnVBox4.getChildren().addAll(turnTitleLabel4, turnLabel4, table4);
+        turnTitleLabel4.setId("turnTitle");
+        turnLabel4.setId("turn");
+
+        turnTitleLabel4.setPrefWidth(250);
+        turnTitleLabel4.setMinHeight(80);
+        turnTitleLabel4.setAlignment(Pos.CENTER);
+
+        turnLabel4.setPrefWidth(250);
+        turnLabel4.setMinHeight(200);
+        turnLabel4.setAlignment(Pos.CENTER);
+
+        turnVBox4.setSpacing(10);
+        turnVBox4.setAlignment(Pos.CENTER);
+
+        try {
+            turnLabel4.setText(controller.getTurn().getFirst());
         } catch (Exception _) {
 
         }
