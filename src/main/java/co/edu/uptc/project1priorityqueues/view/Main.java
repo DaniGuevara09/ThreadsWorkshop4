@@ -1,6 +1,7 @@
 package co.edu.uptc.project1priorityqueues.view;
 
 import co.edu.uptc.project1priorityqueues.logic.PatientController;
+import co.edu.uptc.project1priorityqueues.logic.ThreadsPatient;
 import co.edu.uptc.project1priorityqueues.model.Patient;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -104,6 +105,7 @@ public class Main extends Application {
         turn4();
 
         action();
+        threads();
 
         stackPane.getChildren().addAll(titleLabel, addTurnBtn);
         StackPane.setAlignment(addTurnBtn, Pos.CENTER_RIGHT);
@@ -383,6 +385,18 @@ public class Main extends Application {
             newTurn.scene(primaryStage, controller);
             primaryStage.setScene(newTurn.getScene());
         });
+    }
+
+    public void threads(){
+        ThreadsPatient thPatient1 = new ThreadsPatient( controller, 1);
+        ThreadsPatient thPatient2 = new ThreadsPatient( controller, 2);
+        ThreadsPatient thPatient3 = new ThreadsPatient( controller, 3);
+        ThreadsPatient thPatient4 = new ThreadsPatient( controller, 4);
+
+        thPatient1.run();
+        thPatient2.run();
+        thPatient3.run();
+        thPatient4.run();
     }
 
     public void setController(PatientController controller) {

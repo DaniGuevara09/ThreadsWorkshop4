@@ -132,6 +132,22 @@ public class PatientController {
         return  turn;
     }
 
+    public void time1(){
+        System.out.println("Time 1");
+    }
+
+    public void time2(){
+        System.out.println("Time 2");
+    }
+
+    public void time3(){
+        System.out.println("Time 3");
+    }
+
+    public void time4(){
+        System.out.println("Time 4");
+    }
+
     public static class PatientComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient p1, Patient p2) {
