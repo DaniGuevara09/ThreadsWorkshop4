@@ -88,6 +88,11 @@ public class Main extends Application {
         turnLabel4 = new Label(" - ");
         turnTitleLabel4 = new Label("Window 4");
         table4 = new TableView<>();
+
+        turnLabel1.setAlignment(Pos.CENTER);
+        turnLabel2.setAlignment(Pos.CENTER);
+        turnLabel3.setAlignment(Pos.CENTER);
+        turnLabel4.setAlignment(Pos.CENTER);
     }
 
     @Override
@@ -388,15 +393,27 @@ public class Main extends Application {
     }
 
     public void threads(){
-        Thread thPatient1 = new Thread(new ThreadsPatient( controller, 1));
-        Thread thPatient2 = new Thread(new ThreadsPatient( controller, 2));
-        Thread thPatient3 = new Thread(new ThreadsPatient( controller, 3));
-        Thread thPatient4 = new Thread(new ThreadsPatient( controller, 4));
+        ThreadsPatient thPatient1 = new ThreadsPatient(controller, 1);
+        ThreadsPatient thPatient2 = new ThreadsPatient(controller, 2);
+        ThreadsPatient thPatient3 = new ThreadsPatient(controller, 3);
+        ThreadsPatient thPatient4 = new ThreadsPatient(controller, 4);
 
-        thPatient1.start();
-        thPatient2.start();
-        thPatient3.start();
-        thPatient4.start();
+        Thread tp1 = new Thread(thPatient1);
+        Thread tp2 = new Thread(thPatient2);
+        Thread tp3 = new Thread(thPatient3);
+        Thread tp4 = new Thread(thPatient4);
+
+        tp1.start();
+        tp2.start();
+        tp3.start();
+        tp4.start();
+
+        try{
+            turnLabel1.setText(controller.getTurn(1).getFirst() + "\n" + thPatient1.getTime().getFirst() + "s ");
+            turnLabel2.setText(controller.getTurn(2).getFirst() + "\n" + thPatient2.getTime().get(1) + "s ");
+            turnLabel3.setText(controller.getTurn(3).getFirst() + "\n" + thPatient3.getTime().get(2) + "s ");
+            turnLabel4.setText(controller.getTurn(4).getFirst() + "\n" + thPatient4.getTime().get(3) + "s ");
+        } catch (Exception _) {}
     }
 
     public void setController(PatientController controller) {

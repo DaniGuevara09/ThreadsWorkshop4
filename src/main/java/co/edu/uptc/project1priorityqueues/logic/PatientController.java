@@ -1,6 +1,7 @@
 package co.edu.uptc.project1priorityqueues.logic;
 
 import co.edu.uptc.project1priorityqueues.model.Patient;
+import javafx.scene.image.Image;
 
 import java.util.*;
 
@@ -16,6 +17,11 @@ public class PatientController {
     private int contPregnant;
     private int contAge;
     private int contOther;
+
+    private int time1;
+    private int time2;
+    private int time3;
+    private int time4;
 
     public PatientController() {
         allPatients = new ArrayList<>();
@@ -33,6 +39,11 @@ public class PatientController {
         contPregnant = 1;
         contAge = 1;
         contOther = 1;
+
+        time1 = 0;
+        time2 = 0;
+        time3 = 0;
+        time4 = 0;
     }
 
     public List<String> getTurn(int numList){
@@ -94,7 +105,7 @@ public class PatientController {
     }
 
     public String addPatient(boolean disabled, boolean pregnant, String ageRange){
-        Patient newPatient = new Patient(disabled, pregnant, ageRange);
+        Patient newPatient = new Patient(disabled, pregnant, ageRange, timeRandom());
         String turn = newTurn(newPatient);
 
         int size1 = patients1.size();
@@ -116,6 +127,10 @@ public class PatientController {
         return turn;
     }
 
+    public static int timeRandom(){
+        return (int) (Math.random() * 11) + 5;
+    }
+
     public String newTurn(Patient patient){
         String turn;
 
@@ -133,90 +148,71 @@ public class PatientController {
     }
 
     public void time1(){
-        System.out.println("\nTime 1");
-
-        int durationInSeconds = 10; // Duración total en segundos
-        int intervalInSeconds = 1; // Intervalo entre cambios
-        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
-        int index = 0;
-
-        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
-        while (System.currentTimeMillis() < endTime) {
-            System.out.println(MESSAGES[index]);
-            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
-            try {
-                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
-            }
+        //System.out.println("\nTime 1");
+        try{
+            time1 = patients1.stream().findFirst().get().getTime();
+        } catch (Exception _){
         }
-        System.out.println("Cambio de mensajes finalizado.");
     }
 
     public void time2(){
-        System.out.println("\nTime 2");
-
-        int durationInSeconds = 10; // Duración total en segundos
-        int intervalInSeconds = 1; // Intervalo entre cambios
-        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
-        int index = 0;
-
-        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
-        while (System.currentTimeMillis() < endTime) {
-            System.out.println(MESSAGES[index]);
-            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
-            try {
-                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
-            }
+        //System.out.println("\nTime 2");
+        try{
+            time2 = patients2.stream().findFirst().get().getTime();
+        } catch (Exception e){
         }
-        System.out.println("Cambio de mensajes finalizado.");    }
+    }
 
     public void time3(){
-        System.out.println("\nTime 3");
+        //System.out.println("\nTime 3");
 
-        int durationInSeconds = 10; // Duración total en segundos
-        int intervalInSeconds = 1; // Intervalo entre cambios
-        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
-        int index = 0;
-
-        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
-        while (System.currentTimeMillis() < endTime) {
-            System.out.println(MESSAGES[index]);
-            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
-            try {
-                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
-            }
+        try{
+            time3 = patients3.stream().findFirst().get().getTime();
+        } catch (Exception e){
         }
-        System.out.println("Cambio de mensajes finalizado.");
     }
 
     public void time4(){
-        System.out.println("\nTime 4");
+        //System.out.println("\nTime 4");
 
-        int durationInSeconds = 10; // Duración total en segundos
-        int intervalInSeconds = 1; // Intervalo entre cambios
-        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
-        int index = 0;
-
-        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
-        while (System.currentTimeMillis() < endTime) {
-            System.out.println(MESSAGES[index]);
-            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
-            try {
-                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
-            }
+        try{
+            time4 = patients4.stream().findFirst().get().getTime();
+        } catch (Exception e){
         }
-        System.out.println("Cambio de mensajes finalizado.");
+
+//        int durationInSeconds = 10; // Duración total en segundos
+//        int intervalInSeconds = 1; // Intervalo entre cambios
+//        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
+//        int index = 0;
+//
+//        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
+//        while (System.currentTimeMillis() < endTime) {
+//            System.out.println(MESSAGES[index]);
+//            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
+//            try {
+//                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
+//            } catch (InterruptedException e) {
+//                Thread.currentThread().interrupt();
+//                break;
+//            }
+//        }
+//        System.out.println("Cambio de mensajes finalizado.");
+    }
+
+    public int getTime1() {
+        return time1;
+    }
+
+    public int getTime2() {
+        return time2;
+    }
+
+    public int getTime3() {
+        return time3;
+    }
+
+    public int getTime4() {
+        return time4;
     }
 
     public static class PatientComparator implements Comparator<Patient> {

@@ -5,15 +5,16 @@ public class Patient {
     private boolean disabled;
     private boolean pregnant;
     private String ageRange;
-    private String time;
+    private int time;
 
     public Patient() {
     }
 
-    public Patient(boolean disabled, boolean pregnant, String ageRange) {
+    public Patient(boolean disabled, boolean pregnant, String ageRange, int time) {
         this.disabled = disabled;
         this.pregnant = pregnant;
         this.ageRange = ageRange;
+        this.time = time;
     }
 
     public String getTurn() {
@@ -46,5 +47,13 @@ public class Patient {
 
     public void setAgeRange(String ageRange) {
         this.ageRange = ageRange;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }
