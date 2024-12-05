@@ -388,15 +388,15 @@ public class Main extends Application {
     }
 
     public void threads(){
-        ThreadsPatient thPatient1 = new ThreadsPatient( controller, 1);
-        ThreadsPatient thPatient2 = new ThreadsPatient( controller, 2);
-        ThreadsPatient thPatient3 = new ThreadsPatient( controller, 3);
-        ThreadsPatient thPatient4 = new ThreadsPatient( controller, 4);
+        Thread thPatient1 = new Thread(new ThreadsPatient( controller, 1));
+        Thread thPatient2 = new Thread(new ThreadsPatient( controller, 2));
+        Thread thPatient3 = new Thread(new ThreadsPatient( controller, 3));
+        Thread thPatient4 = new Thread(new ThreadsPatient( controller, 4));
 
-        thPatient1.run();
-        thPatient2.run();
-        thPatient3.run();
-        thPatient4.run();
+        thPatient1.start();
+        thPatient2.start();
+        thPatient3.start();
+        thPatient4.start();
     }
 
     public void setController(PatientController controller) {

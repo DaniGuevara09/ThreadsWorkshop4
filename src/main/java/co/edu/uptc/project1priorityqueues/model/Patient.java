@@ -5,6 +5,7 @@ public class Patient {
     private boolean disabled;
     private boolean pregnant;
     private String ageRange;
+    private String time;
 
     public Patient() {
     }

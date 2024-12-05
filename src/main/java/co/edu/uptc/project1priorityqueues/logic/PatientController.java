@@ -133,19 +133,90 @@ public class PatientController {
     }
 
     public void time1(){
-        System.out.println("Time 1");
+        System.out.println("\nTime 1");
+
+        int durationInSeconds = 10; // Duración total en segundos
+        int intervalInSeconds = 1; // Intervalo entre cambios
+        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
+        int index = 0;
+
+        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
+        while (System.currentTimeMillis() < endTime) {
+            System.out.println(MESSAGES[index]);
+            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
+            try {
+                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+        System.out.println("Cambio de mensajes finalizado.");
     }
 
     public void time2(){
-        System.out.println("Time 2");
-    }
+        System.out.println("\nTime 2");
+
+        int durationInSeconds = 10; // Duración total en segundos
+        int intervalInSeconds = 1; // Intervalo entre cambios
+        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
+        int index = 0;
+
+        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
+        while (System.currentTimeMillis() < endTime) {
+            System.out.println(MESSAGES[index]);
+            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
+            try {
+                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+        System.out.println("Cambio de mensajes finalizado.");    }
 
     public void time3(){
-        System.out.println("Time 3");
+        System.out.println("\nTime 3");
+
+        int durationInSeconds = 10; // Duración total en segundos
+        int intervalInSeconds = 1; // Intervalo entre cambios
+        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
+        int index = 0;
+
+        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
+        while (System.currentTimeMillis() < endTime) {
+            System.out.println(MESSAGES[index]);
+            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
+            try {
+                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+        System.out.println("Cambio de mensajes finalizado.");
     }
 
     public void time4(){
-        System.out.println("Time 4");
+        System.out.println("\nTime 4");
+
+        int durationInSeconds = 10; // Duración total en segundos
+        int intervalInSeconds = 1; // Intervalo entre cambios
+        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
+        int index = 0;
+
+        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
+        while (System.currentTimeMillis() < endTime) {
+            System.out.println(MESSAGES[index]);
+            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
+            try {
+                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;
+            }
+        }
+        System.out.println("Cambio de mensajes finalizado.");
     }
 
     public static class PatientComparator implements Comparator<Patient> {
