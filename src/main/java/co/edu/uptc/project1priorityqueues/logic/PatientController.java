@@ -5,19 +5,29 @@ import co.edu.uptc.project1priorityqueues.model.Patient;
 import java.util.*;
 
 public class PatientController {
-    //private TreeSet<Patient> patients;
-    private PriorityQueue<Patient> patients;
+    //private TreeSet<Patient> patients1;
+    private PriorityQueue<Patient> patients1;
+    private PriorityQueue<Patient> patients2;
+    private PriorityQueue<Patient> patients3;
+    private PriorityQueue<Patient> patients4;
+    private ArrayList<Patient> allPatients;
 
     private int contDisabled;
     private int contPregnant;
     private int contAge;
     private int contOther;
 
-    public PatientController() {}
+    public PatientController() {
+        allPatients = new ArrayList<>();
+    }
 
     public PatientController(Comparator<Patient> comparator) {
-        this.patients = new PriorityQueue<>(comparator);
-        //patients = new TreeSet<>(comparator);
+        allPatients = new ArrayList<>();
+        this.patients1 = new PriorityQueue<>(comparator);
+        this.patients2 = new PriorityQueue<>(comparator);
+        this.patients3 = new PriorityQueue<>(comparator);
+        this.patients4 = new PriorityQueue<>(comparator);
+        //patients1 = new TreeSet<>(comparator);
 
         contDisabled = 1;
         contPregnant = 1;
@@ -25,17 +35,46 @@ public class PatientController {
         contOther = 1;
     }
 
-    public List<String> getTurn(){
+    public List<String> getTurn(int numList){
         List <String> turnList = new ArrayList<>();
 
-        for (Patient patient : patients) {
-            turnList.add(patient.getTurn());
+        switch (numList){
+            case 1:
+                for (Patient patient : patients1) {
+                    turnList.add(patient.getTurn());
+                }
+
+            break;
+            case 2:
+                for (Patient patient : patients2) {
+                    turnList.add(patient.getTurn());
+                }
+            break;
+            case 3:
+                for (Patient patient : patients3) {
+                    turnList.add(patient.getTurn());
+                }
+            break;
+            case 4:
+                for (Patient patient : patients4) {
+                    turnList.add(patient.getTurn());
+                }
+            break;
         }
+
         return turnList;
     }
 
-    public ArrayList<Patient> getPatients() {
-        PriorityQueue<Patient> aux = new PriorityQueue<>(patients);
+    public ArrayList<Patient> getPatients(int numList) {
+        PriorityQueue<Patient> aux = new PriorityQueue<>();
+
+        switch (numList){
+            case 1 -> aux = new PriorityQueue<>(patients1);
+            case 2 -> aux = new PriorityQueue<>(patients2);
+            case 3 -> aux = new PriorityQueue<>(patients3);
+            case 4 -> aux = new PriorityQueue<>(patients4);
+        }
+
         ArrayList<Patient> patientList = new ArrayList<>();
 
         while (!aux.isEmpty()) {
@@ -44,16 +83,36 @@ public class PatientController {
         return patientList;
     }
 
-    public void deleteFirst(){
-        //patients.pollFirst();
-        patients.poll();
+    public void deleteFirst(int numList){
+        //patients1.pollFirst();
+        switch (numList){
+            case 1 -> patients1.poll();
+            case 2 -> patients2.poll();
+            case 3 -> patients3.poll();
+            case 4 -> patients4.poll();
+        }
     }
 
     public String addPatient(boolean disabled, boolean pregnant, String ageRange){
         Patient newPatient = new Patient(disabled, pregnant, ageRange);
         String turn = newTurn(newPatient);
 
-        patients.offer(newPatient);
+        int size1 = patients1.size();
+        int size2 = patients2.size();
+        int size3 = patients3.size();
+        int size4 = patients4.size();
+
+        if (size1 <= size2 && size2 <= size3 && size3 <= size4) {
+            patients1.offer(newPatient);
+        } else if (size2 <= size1 && size2 <= size3 && size2 <= size4) {
+            patients2.offer(newPatient);
+        } else if (size3 <= size1 && size3 <= size2 && size3 <= size4) {
+            patients3.offer(newPatient);
+        } else if (size4 <= size1) {
+            patients4.offer(newPatient);
+        }
+
+        allPatients.add(newPatient);
         return turn;
     }
 

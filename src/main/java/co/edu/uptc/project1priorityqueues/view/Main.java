@@ -142,7 +142,7 @@ public class Main extends Application {
 
         table1.getColumns().add(turn);
 
-        List<Patient> patientList = controller.getPatients();
+        List<Patient> patientList = controller.getPatients(1);
 
         ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
         table1.setItems(patients);
@@ -174,7 +174,7 @@ public class Main extends Application {
 
         table2.getColumns().add(turn);
 
-        List<Patient> patientList = controller.getPatients();
+        List<Patient> patientList = controller.getPatients(2);
 
         ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
         table2.setItems(patients);
@@ -206,7 +206,7 @@ public class Main extends Application {
 
         table3.getColumns().add(turn);
 
-        List<Patient> patientList = controller.getPatients();
+        List<Patient> patientList = controller.getPatients(3);
 
         ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
         table3.setItems(patients);
@@ -238,7 +238,7 @@ public class Main extends Application {
 
         table4.getColumns().add(turn);
 
-        List<Patient> patientList = controller.getPatients();
+        List<Patient> patientList = controller.getPatients(4);
 
         ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
         table4.setItems(patients);
@@ -296,7 +296,7 @@ public class Main extends Application {
         turnVBox1.setAlignment(Pos.CENTER);
 
         try {
-            turnLabel1.setText(controller.getTurn().getFirst());
+            turnLabel1.setText(controller.getTurn(1).getFirst());
         } catch (Exception _) {
 
         }
@@ -319,7 +319,7 @@ public class Main extends Application {
         turnVBox2.setAlignment(Pos.CENTER);
 
         try {
-            turnLabel2.setText(controller.getTurn().getFirst());
+            turnLabel2.setText(controller.getTurn(2).getFirst());
         } catch (Exception _) {
 
         }
@@ -342,7 +342,7 @@ public class Main extends Application {
         turnVBox3.setAlignment(Pos.CENTER);
 
         try {
-            turnLabel3.setText(controller.getTurn().getFirst());
+            turnLabel3.setText(controller.getTurn(3).getFirst());
         } catch (Exception _) {
 
         }
@@ -365,7 +365,7 @@ public class Main extends Application {
         turnVBox4.setAlignment(Pos.CENTER);
 
         try {
-            turnLabel4.setText(controller.getTurn().getFirst());
+            turnLabel4.setText(controller.getTurn(4).getFirst());
         } catch (Exception _) {
 
         }
@@ -374,8 +374,9 @@ public class Main extends Application {
     public void action(){
         addTurnBtn.setOnAction(e -> {
 
-            if (controller.getPatients().size() == 6){
-                controller.deleteFirst();
+            // Solo está para uno
+            if (controller.getPatients(1).size() == 6){
+                controller.deleteFirst(1);
             }
 
             NewTurn newTurn = new NewTurn();
