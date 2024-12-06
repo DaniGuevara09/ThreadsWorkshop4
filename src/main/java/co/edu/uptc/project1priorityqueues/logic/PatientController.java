@@ -7,6 +7,7 @@ import java.util.*;
 
 public class PatientController {
     //private TreeSet<Patient> patients1;
+    private PatientPersistence persistence;
     private PriorityQueue<Patient> patients1;
     private PriorityQueue<Patient> patients2;
     private PriorityQueue<Patient> patients3;
@@ -27,6 +28,9 @@ public class PatientController {
 
     public PatientController(Comparator<Patient> comparator) {
         allPatients = new ArrayList<>();
+        persistence = new PatientPersistence();
+        allPatients = persistence.loadPatientsFromFile();
+
         this.patients1 = new PriorityQueue<>(comparator);
         this.patients2 = new PriorityQueue<>(comparator);
         this.patients3 = new PriorityQueue<>(comparator);
@@ -119,6 +123,7 @@ public class PatientController {
     }
 
     public String newTurn(Patient patient){
+        updateCont();
         String turn;
 
         if (patient.isDisabled()){
@@ -132,6 +137,22 @@ public class PatientController {
         }
         patient.setTurn(turn);
         return  turn;
+    }
+
+    public void updateCont(){
+        try {
+            for (Patient patient : allPatients) {
+                if (patient.getTurn().contains("A")){
+                    contDisabled++;
+                } else if (patient.getTurn().contains("B")){
+                    contPregnant++;
+                } else if (patient.getTurn().contains("C")) {
+                    contAge++;
+                } else if (patient.getTurn().contains("D")) {
+                    contOther++;
+                }
+            }
+        } catch (Exception _){}
     }
 
     public void time1(){

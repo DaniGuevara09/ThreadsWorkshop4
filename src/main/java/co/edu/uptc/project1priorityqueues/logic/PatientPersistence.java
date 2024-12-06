@@ -3,9 +3,13 @@ package co.edu.uptc.project1priorityqueues.logic;
 import co.edu.uptc.project1priorityqueues.model.Patient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class PatientPersistence {
@@ -43,6 +47,22 @@ public class PatientPersistence {
             gson.toJson(allPatients, writer);
         } catch (IOException e) {
             System.err.println("Error al guardar en el archivo JSON: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Patient> loadPatientsFromFile() {
+        ArrayList<Patient> allPatients = new ArrayList<>();
+
+        try (FileReader reader = new FileReader(jsonFile)) {
+            Type listType = new TypeToken<ArrayList<Patient>>() {}.getType();
+            ArrayList<Patient> patients = gson.fromJson(reader, listType);
+            if (patients != null) {
+                allPatients.addAll(patients);
+            }
+            return allPatients;
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo JSON: " + e.getMessage());
+            return null;
         }
     }
 }

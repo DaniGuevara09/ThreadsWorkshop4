@@ -12,5 +12,26 @@
     "pregnant": false,
     "ageRange": "18 - 59",
     "time": 13
+  },
+  {
+    "turn": "D3",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 14
+  },
+  {
+    "turn": "A1",
+    "disabled": true,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 11
+  },
+  {
+    "turn": "A2",
+    "disabled": true,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 8
   }
 ]
