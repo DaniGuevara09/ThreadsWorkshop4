@@ -7,9 +7,6 @@ public class Patient {
     private String ageRange;
     private int time;
 
-    public Patient() {
-    }
-
     public Patient(boolean disabled, boolean pregnant, String ageRange, int time) {
         this.disabled = disabled;
         this.pregnant = pregnant;

@@ -556,17 +556,6 @@ public class Main extends Application {
         action();
     }
 
-    private void handleTurnExpiration(int numList, Label label, TableView<Patient> table, int timeLimit) {
-        // Eliminar el primer turno
-        controller.deleteFirst(numList);
-
-        // Actualizar la tabla
-        table.setItems(FXCollections.observableArrayList(controller.getPatients(numList)));
-
-        // Restablecer el texto del turno
-        label.setText("-\n" + timeLimit + " s");
-    }
-
     public static void main(String[] args) {
         launch(args);
     }

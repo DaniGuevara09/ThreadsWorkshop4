@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6aae1b04-5083-42a6-a635-6899221d4507" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/PatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/model/Patient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/NewTurn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/view/NewTurn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +109,7 @@
       <workItem from="1729257628857" duration="94000" />
       <workItem from="1733281109706" duration="1934000" />
       <workItem from="1733350570495" duration="10022000" />
-      <workItem from="1733411481950" duration="23944000" />
+      <workItem from="1733411481950" duration="26145000" />
     </task>
     <servers />
   </component>

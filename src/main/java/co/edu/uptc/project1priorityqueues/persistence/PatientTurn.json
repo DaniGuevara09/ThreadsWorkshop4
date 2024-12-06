@@ -1,0 +1,16 @@
+[
+  {
+    "turn": "D1",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 15
+  },
+  {
+    "turn": "B1",
+    "disabled": false,
+    "pregnant": true,
+    "ageRange": "18 - 59",
+    "time": 9
+  }
+]

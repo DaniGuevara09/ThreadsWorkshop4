@@ -92,11 +92,6 @@ public class PatientController {
         return patientList;
     }
 
-    public void deleteFirstA(int numList) {
-
-    }
-
-
     public void deleteFirst(int numList){
         //patients1.pollFirst();
         switch (numList){
@@ -127,6 +122,9 @@ public class PatientController {
         }
 
         allPatients.add(newPatient);
+        PatientPersistence persistence = new PatientPersistence();
+        persistence.savePatientsToFile(allPatients);
+
         return turn;
     }
 
@@ -176,30 +174,10 @@ public class PatientController {
     }
 
     public void time4(){
-        //System.out.println("\nTime 4");
-
         try{
             time4 = patients4.stream().findFirst().get().getTime();
         } catch (Exception e){
         }
-
-//        int durationInSeconds = 10; // Duración total en segundos
-//        int intervalInSeconds = 1; // Intervalo entre cambios
-//        String[] MESSAGES = {"Mensaje 1", "Mensaje 2", "Mensaje 3", "Mensaje 4"};
-//        int index = 0;
-//
-//        long endTime = System.currentTimeMillis() + (durationInSeconds * 1000);
-//        while (System.currentTimeMillis() < endTime) {
-//            System.out.println(MESSAGES[index]);
-//            index = (index + 1) % MESSAGES.length; // Avanza al siguiente mensaje
-//            try {
-//                Thread.sleep(intervalInSeconds * 1000); // Espera 1 segundo
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//                break;
-//            }
-//        }
-//        System.out.println("Cambio de mensajes finalizado.");
     }
 
     public int getTime1() {
