@@ -17,7 +17,6 @@ public class ThreadsPatient implements Runnable {
         aux.add(controller.getTime1());
         aux.add(controller.getTime2());
         aux.add(controller.getTime3());
-        aux.add(controller.getTime4());
         return aux;
     }
 
@@ -27,7 +26,6 @@ public class ThreadsPatient implements Runnable {
             case 1 -> controller.time1();
             case 2 -> controller.time2();
             case 3 -> controller.time3();
-            case 4 -> controller.time4();
         }
     }
 }

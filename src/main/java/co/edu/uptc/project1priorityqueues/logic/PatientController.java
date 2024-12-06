@@ -10,7 +10,6 @@ public class PatientController {
     private PriorityQueue<Patient> patients1;
     private PriorityQueue<Patient> patients2;
     private PriorityQueue<Patient> patients3;
-    private PriorityQueue<Patient> patients4;
     private ArrayList<Patient> allPatients;
 
     private int contDisabled;
@@ -21,7 +20,6 @@ public class PatientController {
     private int time1;
     private int time2;
     private int time3;
-    private int time4;
 
     public PatientController() {
         allPatients = new ArrayList<>();
@@ -32,7 +30,6 @@ public class PatientController {
         this.patients1 = new PriorityQueue<>(comparator);
         this.patients2 = new PriorityQueue<>(comparator);
         this.patients3 = new PriorityQueue<>(comparator);
-        this.patients4 = new PriorityQueue<>(comparator);
         //patients1 = new TreeSet<>(comparator);
 
         contDisabled = 1;
@@ -43,7 +40,6 @@ public class PatientController {
         time1 = 0;
         time2 = 0;
         time3 = 0;
-        time4 = 0;
     }
 
     public List<String> getTurn(int numList){
@@ -65,11 +61,6 @@ public class PatientController {
                     turnList.add(patient.getTurn());
                 }
             }
-            case 4 -> {
-                for (Patient patient : patients4) {
-                    turnList.add(patient.getTurn());
-                }
-            }
         }
         return turnList;
     }
@@ -81,7 +72,6 @@ public class PatientController {
             case 1 -> aux = new PriorityQueue<>(patients1);
             case 2 -> aux = new PriorityQueue<>(patients2);
             case 3 -> aux = new PriorityQueue<>(patients3);
-            case 4 -> aux = new PriorityQueue<>(patients4);
         }
 
         ArrayList<Patient> patientList = new ArrayList<>();
@@ -98,7 +88,6 @@ public class PatientController {
             case 1 -> patients1.poll();
             case 2 -> patients2.poll();
             case 3 -> patients3.poll();
-            case 4 -> patients4.poll();
         }
     }
 
@@ -109,16 +98,13 @@ public class PatientController {
         int size1 = patients1.size();
         int size2 = patients2.size();
         int size3 = patients3.size();
-        int size4 = patients4.size();
 
-        if (size1 <= size2 && size2 <= size3 && size3 <= size4) {
+        if (size1 <= size2 && size2 <= size3) {
             patients1.offer(newPatient);
-        } else if (size2 <= size1 && size2 <= size3 && size2 <= size4) {
+        } else if (size2 <= size1 && size2 <= size3) {
             patients2.offer(newPatient);
-        } else if (size3 <= size1 && size3 <= size2 && size3 <= size4) {
+        } else if (size3 <= size1) {
             patients3.offer(newPatient);
-        } else if (size4 <= size1) {
-            patients4.offer(newPatient);
         }
 
         allPatients.add(newPatient);
@@ -173,13 +159,6 @@ public class PatientController {
         }
     }
 
-    public void time4(){
-        try{
-            time4 = patients4.stream().findFirst().get().getTime();
-        } catch (Exception e){
-        }
-    }
-
     public int getTime1() {
         return time1;
     }
@@ -190,10 +169,6 @@ public class PatientController {
 
     public int getTime3() {
         return time3;
-    }
-
-    public int getTime4() {
-        return time4;
     }
 
     public static class PatientComparator implements Comparator<Patient> {

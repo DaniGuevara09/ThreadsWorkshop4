@@ -61,7 +61,6 @@ public class Main extends Application {
     private Timeline timeline1;
     private Timeline timeline2;
     private Timeline timeline3;
-    private Timeline timeline4;
 
     private static double screenWidth;
     private static double screenHeight;
@@ -74,8 +73,6 @@ public class Main extends Application {
     private int currentTime2;
     private int timerId3;
     private int currentTime3;
-    private int timerId4;
-    private int currentTime4;
 
     public Main() {
         primaryStage = new Stage();
@@ -117,7 +114,6 @@ public class Main extends Application {
         timeline1 = new Timeline();
         timeline2 = new Timeline();
         timeline3 = new Timeline();
-        timeline4 = new Timeline();
 
         timerId = 0;
         currentTime = 0;
@@ -125,8 +121,6 @@ public class Main extends Application {
         currentTime2 = 0;
         timerId3 = 0;
         currentTime3 = 0;
-        timerId4 = 0;
-        currentTime4 = 0;
     }
 
     @Override
@@ -136,12 +130,10 @@ public class Main extends Application {
         table1();
         table2();
         table3();
-        table4();
 
         turn1();
         turn2();
         turn3();
-        turn4();
 
         action();
         threads();
@@ -272,38 +264,6 @@ public class Main extends Application {
         HBox.setMargin(turnVBox3, new Insets(30, 0, 30, 0));
     }
 
-    public void table4(){
-        //System.out.println("Holi: " + controller.getTurn());
-        TableColumn<Patient, String> turn = new TableColumn<>();
-        turn.setCellValueFactory(new PropertyValueFactory<>("turn"));
-
-        table4.getColumns().add(turn);
-
-        List<Patient> patientList = controller.getPatients(4);
-
-        ObservableList<Patient> patients = FXCollections.observableArrayList(patientList);
-        table4.setItems(patients);
-
-        table4.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        table4.setRowFactory(tv -> new TableRow<>() {
-            @Override
-            protected void updateItem(Patient patient, boolean empty) {
-                super.updateItem(patient, empty);
-                if (getIndex() == 0 && !empty) {
-                    setStyle("-fx-background-color: #b8d1e7;");
-                } else {
-                    setStyle("");
-                }
-            }
-        });
-
-        table4.setPrefWidth(250);
-        table4.setMaxHeight(250);
-        HBox.setMargin(table4, new Insets(30, 0, 30, 0));
-        HBox.setMargin(turnVBox4, new Insets(30, 0, 30, 0));
-    }
-
     private <T> void centerCellContent(TableColumn<Patient, T> column) {
         column.setCellFactory(tc -> new TableCell<>() {
             @Override
@@ -389,54 +349,26 @@ public class Main extends Application {
         }
     }
 
-    public void turn4(){
-        turnVBox4.getChildren().addAll(turnTitleLabel4, turnLabel4, table4);
-        turnTitleLabel4.setId("turnTitle");
-        turnLabel4.setId("turn");
-
-        turnTitleLabel4.setPrefWidth(250);
-        turnTitleLabel4.setMinHeight(80);
-        turnTitleLabel4.setAlignment(Pos.CENTER);
-
-        turnLabel4.setPrefWidth(250);
-        turnLabel4.setMinHeight(200);
-        turnLabel4.setAlignment(Pos.CENTER);
-
-        turnVBox4.setSpacing(10);
-        turnVBox4.setAlignment(Pos.CENTER);
-
-        try {
-            turnLabel4.setText(controller.getTurn(4).getFirst());
-        } catch (Exception _) {
-
-        }
-    }
-
     public void threads() {
         ThreadsPatient thPatient1 = new ThreadsPatient(controller, 1);
         ThreadsPatient thPatient2 = new ThreadsPatient(controller, 2);
         ThreadsPatient thPatient3 = new ThreadsPatient(controller, 3);
-        ThreadsPatient thPatient4 = new ThreadsPatient(controller, 4);
 
         Thread tp1 = new Thread(thPatient1);
         Thread tp2 = new Thread(thPatient2);
         Thread tp3 = new Thread(thPatient3);
-        Thread tp4 = new Thread(thPatient4);
 
         tp1.start();
         tp2.start();
         tp3.start();
-        tp4.start();
 
         timeline1 = createOrUpdateTimer(turnLabel1, controller.getTime1(), 1);
         timeline2 = createOrUpdateTimer(turnLabel2, controller.getTime2(), 2);
         timeline3 = createOrUpdateTimer(turnLabel3, controller.getTime3(), 3);
-        timeline4 = createOrUpdateTimer(turnLabel4, controller.getTime4(), 4);
 
         timeline1.play();
         timeline2.play();
         timeline3.play();
-        timeline4.play();
     }
 
     private Timeline createOrUpdateTimer(Label label, int timeLimit, int numList) {
@@ -482,7 +414,6 @@ public class Main extends Application {
             case 1 -> table1.getItems().setAll(updatedPatients);
             case 2 -> table2.getItems().setAll(updatedPatients);
             case 3 -> table3.getItems().setAll(updatedPatients);
-            case 4 -> table4.getItems().setAll(updatedPatients);
         }
     }
 
@@ -494,19 +425,17 @@ public class Main extends Application {
             }
 
             NewTurn newTurn = new NewTurn();
-            newTurn.scene(primaryStage, controller, timerId, currentTime, timerId2, currentTime2, timerId3, currentTime3, timerId4, currentTime4);
+            newTurn.scene(primaryStage, controller, timerId, currentTime, timerId2, currentTime2, timerId3, currentTime3);
             primaryStage.setScene(newTurn.getScene());
 
             // Actualizar la vista y los temporizadores
             table1.setItems(FXCollections.observableArrayList(controller.getPatients(1)));
             table2.setItems(FXCollections.observableArrayList(controller.getPatients(2)));
             table3.setItems(FXCollections.observableArrayList(controller.getPatients(3)));
-            table4.setItems(FXCollections.observableArrayList(controller.getPatients(4)));
 
             timeline1.playFromStart(); // Continúa desde el punto actual o se actualiza según sea necesario
             timeline2.playFromStart();
             timeline3.playFromStart();
-            timeline4.playFromStart();
         });
     }
 
@@ -524,10 +453,6 @@ public class Main extends Application {
                 timerId3 = timerId;
                 currentTime3 = currentTime;
             }
-            case 4 -> {
-                timerId4 = timerId;
-                currentTime4 = currentTime;
-            }
         }
         timerStates.put(timerId, currentTime);
     }
@@ -537,7 +462,7 @@ public class Main extends Application {
         return timerStates.getOrDefault(timerId, 0);
     }
 
-    public void setController(PatientController controller, int timerId, int currentTime, int timerId2, int currentTime2, int timerId3, int currentTime3, int timerId4, int currentTime4) {
+    public void setController(PatientController controller, int timerId, int currentTime, int timerId2, int currentTime2, int timerId3, int currentTime3) {
         this.controller = controller;
         this.timerId = timerId;
         this.currentTime = currentTime;
@@ -545,13 +470,10 @@ public class Main extends Application {
         this.currentTime2 = currentTime2;
         this.timerId3 = timerId3;
         this.currentTime3 = currentTime3;
-        this.timerId4 = timerId4;
-        this.currentTime4 = currentTime4;
 
         updateTimerState(timerId, currentTime, 1);
         updateTimerState(timerId2, currentTime2, 2);
         updateTimerState(timerId3, currentTime3, 3);
-        updateTimerState(timerId4, currentTime4, 4);
 
         action();
     }

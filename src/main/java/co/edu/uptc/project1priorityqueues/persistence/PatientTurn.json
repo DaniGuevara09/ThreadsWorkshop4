@@ -4,13 +4,13 @@
     "disabled": false,
     "pregnant": false,
     "ageRange": "18 - 59",
-    "time": 15
+    "time": 6
   },
   {
-    "turn": "B1",
+    "turn": "D2",
     "disabled": false,
-    "pregnant": true,
+    "pregnant": false,
     "ageRange": "18 - 59",
-    "time": 9
+    "time": 13
   }
 ]
