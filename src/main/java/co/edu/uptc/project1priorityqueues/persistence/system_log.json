@@ -1,86 +1,152 @@
 [
   {
-    "activeThreads": 0,
-    "event": "executionTime",
-    "queue": "patients1",
-    "executionTimeInMillis": 0.284715
-  },
-  {
     "activeThreads": 3,
-    "event": "executionTime",
-    "queue": "patients3",
-    "executionTimeInMillis": 0.046939
-  },
-  {
-    "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.226691,
     "queue": "patients2",
-    "executionTimeInMillis": 0.055666
+    "event": "executionTime"
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.071813,
+    "queue": "patients3",
+    "event": "executionTime"
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.414269,
+    "queue": "patients1",
+    "event": "executionTime"
   },
   {
     "event": "addPatient",
     "patient": {
-      "ageRange": "18 - 59",
-      "turn": "D40",
       "disabled": false,
-      "time": 11,
-      "pregnant": false
+      "turn": "C4",
+      "ageRange": "≥ 60",
+      "pregnant": false,
+      "time": 9
     }
   },
   {
     "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.059731,
     "queue": "patients1",
-    "executionTimeInMillis": 0.070685
+    "event": "executionTime"
   },
   {
     "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.029345,
     "queue": "patients3",
-    "executionTimeInMillis": 0.033053
+    "event": "executionTime"
   },
   {
     "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.096349,
     "queue": "patients2",
-    "executionTimeInMillis": 0.090063
-  },
-  {
-    "queue": "patients1",
-    "event": "deleteFirst",
-    "removedPatient": "D40"
+    "event": "executionTime"
   },
   {
     "event": "addPatient",
     "patient": {
+      "disabled": false,
+      "turn": "D48",
       "ageRange": "18 - 59",
-      "turn": "A7",
-      "disabled": true,
-      "time": 14,
-      "pregnant": false
+      "pregnant": false,
+      "time": 8
     }
   },
   {
     "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.048621,
     "queue": "patients1",
-    "executionTimeInMillis": 0.066056
+    "event": "executionTime"
   },
   {
     "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.048009,
     "queue": "patients3",
-    "executionTimeInMillis": 0.055947
+    "event": "executionTime"
   },
   {
     "activeThreads": 3,
-    "event": "executionTime",
+    "executionTimeInMillis": 0.059751,
     "queue": "patients2",
-    "executionTimeInMillis": 0.076086
+    "event": "executionTime"
+  },
+  {
+    "event": "addPatient",
+    "patient": {
+      "disabled": false,
+      "turn": "D49",
+      "ageRange": "18 - 59",
+      "pregnant": false,
+      "time": 8
+    }
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.054962,
+    "queue": "patients1",
+    "event": "executionTime"
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 8.537053,
+    "queue": "patients3",
+    "event": "executionTime"
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.069799,
+    "queue": "patients2",
+    "event": "executionTime"
+  },
+  {
+    "queue": "patients3",
+    "removedPatient": "D49",
+    "event": "deleteFirst"
+  },
+  {
+    "event": "addPatient",
+    "patient": {
+      "disabled": false,
+      "turn": "B14",
+      "ageRange": "18 - 59",
+      "pregnant": true,
+      "time": 9
+    }
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.05923,
+    "queue": "patients1",
+    "event": "executionTime"
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.027811,
+    "queue": "patients3",
+    "event": "executionTime"
+  },
+  {
+    "activeThreads": 3,
+    "executionTimeInMillis": 0.029385,
+    "queue": "patients2",
+    "event": "executionTime"
   },
   {
     "queue": "patients1",
-    "event": "deleteFirst",
-    "removedPatient": "A7"
+    "removedPatient": "C4",
+    "event": "deleteFirst"
+  },
+  {
+    "queue": "patients2",
+    "removedPatient": "D48",
+    "event": "deleteFirst"
+  },
+  {
+    "queue": "patients3",
+    "removedPatient": "B14",
+    "event": "deleteFirst"
   }
 ]

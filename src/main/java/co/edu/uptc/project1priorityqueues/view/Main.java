@@ -51,11 +51,6 @@ public class Main extends Application {
     private Label turnTitleLabel3;
     private TableView<Patient> table3;
 
-    private VBox turnVBox4;
-    private Label turnLabel4;
-    private Label turnTitleLabel4;
-    private TableView<Patient> table4;
-
     private Button addTurnBtn;
 
     private Timeline timeline1;
@@ -73,6 +68,8 @@ public class Main extends Application {
     private int currentTime2;
     private int timerId3;
     private int currentTime3;
+
+    private Label infoLabel;
 
     public Main() {
         primaryStage = new Stage();
@@ -101,15 +98,9 @@ public class Main extends Application {
         turnTitleLabel3 = new Label("Window 3");
         table3 = new TableView<>();
 
-        turnVBox4 = new VBox();
-        turnLabel4 = new Label(" - ");
-        turnTitleLabel4 = new Label("Window 4");
-        table4 = new TableView<>();
-
         turnLabel1.setAlignment(Pos.CENTER);
         turnLabel2.setAlignment(Pos.CENTER);
         turnLabel3.setAlignment(Pos.CENTER);
-        turnLabel4.setAlignment(Pos.CENTER);
 
         timeline1 = new Timeline();
         timeline2 = new Timeline();
@@ -121,6 +112,8 @@ public class Main extends Application {
         currentTime2 = 0;
         timerId3 = 0;
         currentTime3 = 0;
+
+        infoLabel = new Label();
     }
 
     @Override
@@ -137,6 +130,7 @@ public class Main extends Application {
 
         action();
         threads();
+        setInfo();
 
         stackPane.getChildren().addAll(titleLabel, addTurnBtn);
         StackPane.setAlignment(addTurnBtn, Pos.CENTER_RIGHT);
@@ -151,9 +145,14 @@ public class Main extends Application {
         titleLabel.setPrefHeight(120);
         titleLabel.setAlignment(Pos.CENTER);
 
-        centerHBox.getChildren().addAll(turnVBox1, turnVBox2, turnVBox3, turnVBox4);
+        centerHBox.getChildren().addAll(turnVBox1, turnVBox2, turnVBox3, infoLabel);
         centerHBox.setSpacing(100);
         centerHBox.setAlignment(Pos.CENTER);
+
+        infoLabel.setId("info");
+        infoLabel.setAlignment(Pos.CENTER);
+        infoLabel.setMinHeight(500);
+        infoLabel.setPrefWidth(250);
 
         BorderPane.setAlignment(titleLabel, Pos.CENTER);
         BorderPane.setAlignment(table1, Pos.CENTER);
@@ -166,6 +165,10 @@ public class Main extends Application {
         primaryStage.setTitle("Don Copito");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void setInfo(){
+        infoLabel.setText(controller.getTotal());
     }
 
     public void table1(){
@@ -423,13 +426,8 @@ public class Main extends Application {
         }
     }
 
-
     public void action() {
         addTurnBtn.setOnAction(e -> {
-            if (controller.getPatients(1).size() == 6) {
-                controller.deleteFirst(1);
-            }
-
             NewTurn newTurn = new NewTurn();
             newTurn.scene(primaryStage, controller, timerId, currentTime, timerId2, currentTime2, timerId3, currentTime3);
             primaryStage.setScene(newTurn.getScene());

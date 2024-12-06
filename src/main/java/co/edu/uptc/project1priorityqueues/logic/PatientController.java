@@ -20,6 +20,11 @@ public class PatientController {
     private int time2;
     private int time3;
 
+    private int total;
+    private int totalW1;
+    private int totalW2;
+    private int totalW3;
+
     private Config config;
     private LogManager logManager;
     private int manualThreadsCount;
@@ -50,6 +55,10 @@ public class PatientController {
         time3 = 0;
 
         this.manualThreadsCount = 0;
+        total = 0;
+        totalW1 = 0;
+        totalW2 = 0;
+        totalW3 = 0;
     }
 
     public List<String> getTurn(int numList){
@@ -121,10 +130,13 @@ public class PatientController {
 
         if (size1 <= size2 && size2 <= size3) {
             patients1.offer(newPatient);
+            totalW1++;
         } else if (size2 <= size1 && size2 <= size3) {
             patients2.offer(newPatient);
+            totalW2++;
         } else if (size3 <= size1) {
             patients3.offer(newPatient);
+            totalW3++;
         }
 
         allPatients.add(newPatient);
@@ -142,6 +154,15 @@ public class PatientController {
         ));
         saveLogs();
         return turn;
+    }
+
+    public String getTotal(){
+        total = totalW1 + totalW2 + totalW3;
+        return "Total Users\n\n\n" +
+                "Window 1:   " + totalW1 + "\n\n" +
+                "Window 2:   " + totalW2 + "\n\n" +
+                "Window 3:   " + totalW3 + "\n\n" +
+                "Total:  " + total;
     }
 
     public void saveLogs() {

@@ -119,3 +119,11 @@
     -fx-background-radius: 40px;
     -fx-padding: 1px;
 }
+
+#info {
+    -fx-background-color: #c0d4e4;
+    -fx-background-radius: 15;
+    -fx-alignment: center;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 100px;
+}
