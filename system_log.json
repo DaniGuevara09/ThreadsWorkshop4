@@ -1,0 +1,53 @@
+[
+  {
+    "executionTimeInMillis": 0.327048,
+    "queue": "patients2",
+    "event": "executionTime",
+    "activeThreads": 3
+  },
+  {
+    "executionTimeInMillis": 0.049664,
+    "queue": "patients3",
+    "event": "executionTime",
+    "activeThreads": 3
+  },
+  {
+    "executionTimeInMillis": 0.414853,
+    "queue": "patients1",
+    "event": "executionTime",
+    "activeThreads": 3
+  },
+  {
+    "patient": {
+      "pregnant": false,
+      "time": 8,
+      "disabled": false,
+      "turn": "D37",
+      "ageRange": "18 - 59"
+    },
+    "event": "addPatient"
+  },
+  {
+    "executionTimeInMillis": 0.075242,
+    "queue": "patients1",
+    "event": "executionTime",
+    "activeThreads": 3
+  },
+  {
+    "executionTimeInMillis": 0.058981,
+    "queue": "patients3",
+    "event": "executionTime",
+    "activeThreads": 6
+  },
+  {
+    "executionTimeInMillis": 0.099248,
+    "queue": "patients2",
+    "event": "executionTime",
+    "activeThreads": 6
+  },
+  {
+    "removedPatient": "D37",
+    "event": "deleteFirst",
+    "queue": "patients1"
+  }
+]

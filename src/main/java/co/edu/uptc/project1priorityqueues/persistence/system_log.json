@@ -1,86 +1,86 @@
 [
   {
-    "activeThreads": 9,
-    "event": "executionTime",
-    "queue": "patients3",
-    "executionTimeInMillis": 0.049163
-  },
-  {
-    "activeThreads": 9,
+    "activeThreads": 0,
     "event": "executionTime",
     "queue": "patients1",
-    "executionTimeInMillis": 0.395725
+    "executionTimeInMillis": 0.284715
   },
   {
-    "activeThreads": 9,
+    "activeThreads": 3,
+    "event": "executionTime",
+    "queue": "patients3",
+    "executionTimeInMillis": 0.046939
+  },
+  {
+    "activeThreads": 3,
     "event": "executionTime",
     "queue": "patients2",
-    "executionTimeInMillis": 0.112302
+    "executionTimeInMillis": 0.055666
   },
   {
     "event": "addPatient",
     "patient": {
       "ageRange": "18 - 59",
-      "turn": "D18",
+      "turn": "D40",
       "disabled": false,
       "time": 11,
       "pregnant": false
     }
   },
   {
-    "activeThreads": 8,
+    "activeThreads": 3,
     "event": "executionTime",
     "queue": "patients1",
-    "executionTimeInMillis": 0.071425
+    "executionTimeInMillis": 0.070685
   },
   {
-    "activeThreads": 9,
-    "event": "executionTime",
-    "queue": "patients2",
-    "executionTimeInMillis": 0.10067
-  },
-  {
-    "activeThreads": 9,
+    "activeThreads": 3,
     "event": "executionTime",
     "queue": "patients3",
-    "executionTimeInMillis": 0.04804
+    "executionTimeInMillis": 0.033053
+  },
+  {
+    "activeThreads": 3,
+    "event": "executionTime",
+    "queue": "patients2",
+    "executionTimeInMillis": 0.090063
   },
   {
     "queue": "patients1",
     "event": "deleteFirst",
-    "removedPatient": "D18"
+    "removedPatient": "D40"
   },
   {
     "event": "addPatient",
     "patient": {
       "ageRange": "18 - 59",
-      "turn": "D19",
-      "disabled": false,
-      "time": 11,
+      "turn": "A7",
+      "disabled": true,
+      "time": 14,
       "pregnant": false
     }
   },
   {
-    "activeThreads": 8,
+    "activeThreads": 3,
     "event": "executionTime",
     "queue": "patients1",
-    "executionTimeInMillis": 0.062474
+    "executionTimeInMillis": 0.066056
   },
   {
-    "activeThreads": 9,
-    "event": "executionTime",
-    "queue": "patients2",
-    "executionTimeInMillis": 0.106756
-  },
-  {
-    "activeThreads": 9,
+    "activeThreads": 3,
     "event": "executionTime",
     "queue": "patients3",
-    "executionTimeInMillis": 0.050593
+    "executionTimeInMillis": 0.055947
+  },
+  {
+    "activeThreads": 3,
+    "event": "executionTime",
+    "queue": "patients2",
+    "executionTimeInMillis": 0.076086
   },
   {
     "queue": "patients1",
     "event": "deleteFirst",
-    "removedPatient": "D19"
+    "removedPatient": "A7"
   }
 ]

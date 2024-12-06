@@ -362,6 +362,12 @@ public class Main extends Application {
         tp2.start();
         tp3.start();
 
+        controller.setManualThreadsCount();
+
+        controller.incrementThreadCount();
+        controller.incrementThreadCount();
+        controller.incrementThreadCount();
+
         timeline1 = createOrUpdateTimer(turnLabel1, controller.getTime1(), 1);
         timeline2 = createOrUpdateTimer(turnLabel2, controller.getTime2(), 2);
         timeline3 = createOrUpdateTimer(turnLabel3, controller.getTime3(), 3);

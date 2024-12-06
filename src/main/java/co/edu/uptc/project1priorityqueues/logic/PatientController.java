@@ -22,6 +22,7 @@ public class PatientController {
 
     private Config config;
     private LogManager logManager;
+    private int manualThreadsCount;
 
     public PatientController() {
         allPatients = new ArrayList<>();
@@ -47,6 +48,8 @@ public class PatientController {
         time1 = 0;
         time2 = 0;
         time3 = 0;
+
+        this.manualThreadsCount = 0;
     }
 
     public List<String> getTurn(int numList){
@@ -226,6 +229,18 @@ public class PatientController {
 
     public LogManager getLogManager() {
         return logManager;
+    }
+
+    public void incrementThreadCount() {
+        manualThreadsCount++;
+    }
+
+    public int getManualThreadsCount() {
+        return manualThreadsCount;
+    }
+
+    public void setManualThreadsCount() {
+        manualThreadsCount = 0;
     }
 
     public static class PatientComparator implements Comparator<Patient> {

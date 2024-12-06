@@ -250,5 +250,208 @@
     "pregnant": false,
     "ageRange": "18 - 59",
     "time": 11
+  },
+  {
+    "turn": "D20",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 12
+  },
+  {
+    "turn": "D21",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 5
+  },
+  {
+    "turn": "D22",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 6
+  },
+  {
+    "turn": "D23",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 8
+  },
+  {
+    "turn": "D24",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 13
+  },
+  {
+    "turn": "D25",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 13
+  },
+  {
+    "turn": "D26",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 12
+  },
+  {
+    "turn": "D27",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 15
+  },
+  {
+    "turn": "B8",
+    "disabled": false,
+    "pregnant": true,
+    "ageRange": "18 - 59",
+    "time": 7
+  },
+  {
+    "turn": "C2",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "≥ 60",
+    "time": 13
+  },
+  {
+    "turn": "A6",
+    "disabled": true,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 10
+  },
+  {
+    "turn": "B9",
+    "disabled": false,
+    "pregnant": true,
+    "ageRange": "18 - 59",
+    "time": 15
+  },
+  {
+    "turn": "D28",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 7
+  },
+  {
+    "turn": "D29",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 7
+  },
+  {
+    "turn": "D30",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 10
+  },
+  {
+    "turn": "D31",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 13
+  },
+  {
+    "turn": "D32",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 12
+  },
+  {
+    "turn": "B10",
+    "disabled": false,
+    "pregnant": true,
+    "ageRange": "18 - 59",
+    "time": 6
+  },
+  {
+    "turn": "B11",
+    "disabled": false,
+    "pregnant": true,
+    "ageRange": "18 - 59",
+    "time": 11
+  },
+  {
+    "turn": "D33",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 6
+  },
+  {
+    "turn": "D34",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 6
+  },
+  {
+    "turn": "D35",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 11
+  },
+  {
+    "turn": "D36",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 8
+  },
+  {
+    "turn": "D37",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 8
+  },
+  {
+    "turn": "D38",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 8
+  },
+  {
+    "turn": "D39",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 6
+  },
+  {
+    "turn": "B12",
+    "disabled": false,
+    "pregnant": true,
+    "ageRange": "18 - 59",
+    "time": 7
+  },
+  {
+    "turn": "D40",
+    "disabled": false,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 11
+  },
+  {
+    "turn": "A7",
+    "disabled": true,
+    "pregnant": false,
+    "ageRange": "18 - 59",
+    "time": 14
   }
 ]

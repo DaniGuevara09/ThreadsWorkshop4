@@ -44,7 +44,7 @@ public class ThreadsPatient implements Runnable {
         double executionTimeInMillis = executionTime / 1000000.0;
 
         // Obtener la cantidad de hilos activos
-        int activeThreadCount = Thread.activeCount();
+        int activeThreadCount = controller.getManualThreadsCount();
 
         // Registrar la información en el log
         logManager.addLog(Map.of(
