@@ -4,7 +4,6 @@ import co.edu.uptc.project1priorityqueues.model.Patient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -34,7 +33,7 @@ public class PatientPersistence {
             }
             if (!jsonFile.exists()) {
                 if (jsonFile.createNewFile()) {
-                    savePatientsToFile(null); // Crea un archivo inicial vacío
+                    savePatientsToFile(null);
                 }
             }
         } catch (IOException e) {

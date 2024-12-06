@@ -26,31 +26,15 @@ public class Patient {
         return disabled;
     }
 
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
-    }
-
     public boolean isPregnant() {
         return pregnant;
-    }
-
-    public void setPregnant(boolean pregnant) {
-        this.pregnant = pregnant;
     }
 
     public String getAgeRange() {
         return ageRange;
     }
 
-    public void setAgeRange(String ageRange) {
-        this.ageRange = ageRange;
-    }
-
     public int getTime() {
         return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
     }
 }

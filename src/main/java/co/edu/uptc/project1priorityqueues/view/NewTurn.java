@@ -15,9 +15,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class NewTurn {
     private PatientController controller;
@@ -170,9 +167,6 @@ public class NewTurn {
         hLblPregnant.setId("hBox");
         lblAge.setId("hBoxAge");
         comboAge.setId("hBoxAge");
-
-        // 900 - 650
-        // 400 -
 
         hBoxDisability.setSpacing(60);
         hBoxPregnant.setSpacing(60);

@@ -4,7 +4,6 @@ import co.edu.uptc.project1priorityqueues.model.Patient;
 import java.util.*;
 
 public class PatientController {
-    //private TreeSet<Patient> patients1;
     private PatientPersistence persistence;
     private PriorityQueue<Patient> patients1;
     private PriorityQueue<Patient> patients2;
@@ -212,28 +211,21 @@ public class PatientController {
     }
 
     public void time1(){
-        //System.out.println("\nTime 1");
         try{
             time1 = patients1.stream().findFirst().get().getTime();
-        } catch (Exception _){
-        }
+        } catch (Exception _){}
     }
 
     public void time2(){
-        //System.out.println("\nTime 2");
         try{
             time2 = patients2.stream().findFirst().get().getTime();
-        } catch (Exception e){
-        }
+        } catch (Exception _){}
     }
 
     public void time3(){
-        //System.out.println("\nTime 3");
-
         try{
             time3 = patients3.stream().findFirst().get().getTime();
-        } catch (Exception e){
-        }
+        } catch (Exception _){}
     }
 
     public int getTime1() {
@@ -267,10 +259,6 @@ public class PatientController {
     public static class PatientComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient p1, Patient p2) {
-
-            //System.out.println(p1.getTurn());
-            //System.out.println(p2.getTurn());
-
             if (p1.getTurn().compareTo(p2.getTurn()) > 0){
                 return 1;
             } else if (p1.getTurn().compareTo(p2.getTurn()) < 0){

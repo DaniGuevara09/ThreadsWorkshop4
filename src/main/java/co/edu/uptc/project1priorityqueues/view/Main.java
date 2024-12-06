@@ -3,7 +3,6 @@ package co.edu.uptc.project1priorityqueues.view;
 import co.edu.uptc.project1priorityqueues.logic.PatientController;
 import co.edu.uptc.project1priorityqueues.logic.ThreadsPatient;
 import co.edu.uptc.project1priorityqueues.model.Patient;
-import com.sun.source.tree.Tree;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -382,38 +381,32 @@ public class Main extends Application {
 
     private Timeline createOrUpdateTimer(Label label, int timeLimit, int numList) {
         Timeline timeline = new Timeline();
-        int[] currentTime = {getTimerState(numList)}; // Obtiene el estado inicial del temporizador
+        int[] currentTime = {getTimerState(numList)};
 
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
             try {
-                // Actualiza el texto del label con el turno y el tiempo actual
                 label.setText(controller.getTurn(numList).getFirst() + "\n" + currentTime[0] + " s");
-                currentTime[0]++; // Incrementa el tiempo actual
-
-                // Guarda el estado actual del temporizador
+                currentTime[0]++;
                 updateTimerState(numList, currentTime[0], numList);
 
-                // Si se alcanza el límite de tiempo
                 if (currentTime[0] > timeLimit) {
-                    controller.deleteFirst(numList); // Elimina el primer turno
-                    updateTableView(numList); // Actualiza la tabla
-                    currentTime[0] = 0; // Reinicia el contador a 0
-                    updateTimerState(numList, 0, numList); // Reinicia el estado en el mapa
-                    timeline.playFromStart(); // Reinicia el temporizador
+                    controller.deleteFirst(numList);
+                    updateTableView(numList);
+                    currentTime[0] = 0;
+                    updateTimerState(numList, 0, numList);
+                    timeline.playFromStart();
                 }
             } catch (Exception e) {
-                // Manejo de excepciones (por ejemplo, si no hay más turnos)
-                currentTime[0] = 0; // Reinicia el contador
-                updateTimerState(numList, 0, numList); // Reinicia el estado en el mapa
-                label.setText("-"); // Muestra vacío si no hay turnos
-                timeline.stop(); // Detiene el temporizador
+                currentTime[0] = 0;
+                updateTimerState(numList, 0, numList);
+                label.setText("-");
+                timeline.stop();
             }
         });
 
-        // Configura el timeline
         timeline.getKeyFrames().clear();
         timeline.getKeyFrames().add(keyFrame);
-        timeline.setCycleCount(Timeline.INDEFINITE); // Ciclos indefinidos
+        timeline.setCycleCount(Timeline.INDEFINITE);
         return timeline;
     }
 
@@ -432,12 +425,11 @@ public class Main extends Application {
             newTurn.scene(primaryStage, controller, timerId, currentTime, timerId2, currentTime2, timerId3, currentTime3);
             primaryStage.setScene(newTurn.getScene());
 
-            // Actualizar la vista y los temporizadores
             table1.setItems(FXCollections.observableArrayList(controller.getPatients(1)));
             table2.setItems(FXCollections.observableArrayList(controller.getPatients(2)));
             table3.setItems(FXCollections.observableArrayList(controller.getPatients(3)));
 
-            timeline1.playFromStart(); // Continúa desde el punto actual o se actualiza según sea necesario
+            timeline1.playFromStart();
             timeline2.playFromStart();
             timeline3.playFromStart();
         });
@@ -461,7 +453,6 @@ public class Main extends Application {
         timerStates.put(timerId, currentTime);
     }
 
-    // Obtiene el estado del temporizador
     private int getTimerState(int timerId) {
         return timerStates.getOrDefault(timerId, 0);
     }

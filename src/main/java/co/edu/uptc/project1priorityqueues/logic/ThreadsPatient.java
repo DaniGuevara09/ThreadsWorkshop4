@@ -40,20 +40,15 @@ public class ThreadsPatient implements Runnable {
     }
 
     private void logExecutionTime(long executionTime) {
-        // Convertir a milisegundos con decimales
         double executionTimeInMillis = executionTime / 1000000.0;
-
-        // Obtener la cantidad de hilos activos
         int activeThreadCount = controller.getManualThreadsCount();
 
-        // Registrar la información en el log
         logManager.addLog(Map.of(
                 "event", "executionTime",
                 "queue", "patients" + numOp,
                 "executionTimeInMillis", executionTimeInMillis,
                 "activeThreads", activeThreadCount
         ));
-
         controller.saveLogs();
     }
 }
