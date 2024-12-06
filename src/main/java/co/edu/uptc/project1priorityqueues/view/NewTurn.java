@@ -15,6 +15,9 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class NewTurn {
     private PatientController controller;
@@ -52,6 +55,15 @@ public class NewTurn {
     private boolean isDisability;
     private boolean isPregnant;
     private boolean ageConfirmation;
+
+    private int currentTime1;
+    private int timerId1;
+    private int currentTime2;
+    private int timerId2;
+    private int currentTime3;
+    private int timerId3;
+    private int currentTime4;
+    private int timerId4;
 
     private static double screenWidth;
     private static double screenHeight;
@@ -95,14 +107,23 @@ public class NewTurn {
         ageConfirmation = false;
     }
 
-    public void scene(Stage primaryStage, PatientController controller) {
+    public void scene(Stage primaryStage, PatientController controller, int timerId1, int currentTime1, int timerId2, int currentTime2, int timerId3, int currentTime3, int timerId4, int currentTime4) {
+        this.currentTime1 = currentTime1;
+        this.timerId1 = timerId1;
+        this.currentTime2 = currentTime2;
+        this.timerId2 = timerId2;
+        this.currentTime3 = currentTime3;
+        this.timerId3 = timerId3;
+        this.currentTime4 = currentTime4;
+        this.timerId4 = timerId4;
+
         this.controller = controller;
         this.primaryStage = primaryStage;
         scene.getStylesheets()
                 .add(new File("src/main/java/co/edu/uptc/project1priorityqueues/view/Style.css").toURI().toString());
 
         info();
-        actions();
+        actions(timerId1, currentTime1, timerId2, currentTime2, timerId3, currentTime3, timerId4, currentTime4);
 
         root.setId("root");
         title.setId("title");
@@ -188,7 +209,7 @@ public class NewTurn {
         }});
     }
 
-    public void actions(){
+    public void actions(int timerId, int currentTime, int timerId2, int currentTime2, int timerId3, int currentTime3, int timerId4, int currentTime4){
         btnConfirm.setOnAction(e -> {
             if (validation()) {
                 Main main = new Main();
@@ -196,7 +217,7 @@ public class NewTurn {
                     String turn = controller.addPatient(isDisability, isPregnant, comboAge.getValue().toString());
 
                     primaryStage.close();
-                    main.setController(controller);
+                    main.setController(controller, timerId, currentTime, timerId2, currentTime2, timerId3, currentTime3, timerId4, currentTime4);
                     main.start(primaryStage);
 
                     Confirmation config = new Confirmation();

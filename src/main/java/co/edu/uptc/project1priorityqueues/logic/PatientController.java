@@ -50,29 +50,27 @@ public class PatientController {
         List <String> turnList = new ArrayList<>();
 
         switch (numList){
-            case 1:
+            case 1 -> {
                 for (Patient patient : patients1) {
                     turnList.add(patient.getTurn());
                 }
-
-            break;
-            case 2:
+            }
+            case 2 -> {
                 for (Patient patient : patients2) {
                     turnList.add(patient.getTurn());
                 }
-            break;
-            case 3:
+            }
+            case 3 -> {
                 for (Patient patient : patients3) {
                     turnList.add(patient.getTurn());
                 }
-            break;
-            case 4:
+            }
+            case 4 -> {
                 for (Patient patient : patients4) {
                     turnList.add(patient.getTurn());
                 }
-            break;
+            }
         }
-
         return turnList;
     }
 
@@ -93,6 +91,11 @@ public class PatientController {
         }
         return patientList;
     }
+
+    public void deleteFirstA(int numList) {
+
+    }
+
 
     public void deleteFirst(int numList){
         //patients1.pollFirst();

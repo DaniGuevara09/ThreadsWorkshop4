@@ -3,6 +3,9 @@ package co.edu.uptc.project1priorityqueues.view;
 import co.edu.uptc.project1priorityqueues.logic.PatientController;
 import co.edu.uptc.project1priorityqueues.logic.ThreadsPatient;
 import co.edu.uptc.project1priorityqueues.model.Patient;
+import com.sun.source.tree.Tree;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,8 +20,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import java.io.File;
-import java.util.List;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -36,7 +40,7 @@ public class Main extends Application {
     private Label turnLabel1;
     private Label turnTitleLabel1;
     private TableView<Patient> table1;
-    
+
     private VBox turnVBox2;
     private Label turnLabel2;
     private Label turnTitleLabel2;
@@ -51,11 +55,27 @@ public class Main extends Application {
     private Label turnLabel4;
     private Label turnTitleLabel4;
     private TableView<Patient> table4;
-    
+
     private Button addTurnBtn;
+
+    private Timeline timeline1;
+    private Timeline timeline2;
+    private Timeline timeline3;
+    private Timeline timeline4;
 
     private static double screenWidth;
     private static double screenHeight;
+
+    private final Map<Integer, Integer> timerStates = new HashMap<>();
+
+    private int timerId;
+    private int currentTime;
+    private int timerId2;
+    private int currentTime2;
+    private int timerId3;
+    private int currentTime3;
+    private int timerId4;
+    private int currentTime4;
 
     public Main() {
         primaryStage = new Stage();
@@ -68,7 +88,7 @@ public class Main extends Application {
         titleLabel = new Label("Don Copito Medicines");
         addTurnBtn = new Button("Add Turn");
         centerHBox = new HBox();
-        
+
         turnVBox1 = new VBox();
         turnLabel1 = new Label(" - ");
         turnTitleLabel1 = new Label("Window 1");
@@ -93,6 +113,20 @@ public class Main extends Application {
         turnLabel2.setAlignment(Pos.CENTER);
         turnLabel3.setAlignment(Pos.CENTER);
         turnLabel4.setAlignment(Pos.CENTER);
+
+        timeline1 = new Timeline();
+        timeline2 = new Timeline();
+        timeline3 = new Timeline();
+        timeline4 = new Timeline();
+
+        timerId = 0;
+        currentTime = 0;
+        timerId2 = 0;
+        currentTime2 = 0;
+        timerId3 = 0;
+        currentTime3 = 0;
+        timerId4 = 0;
+        currentTime4 = 0;
     }
 
     @Override
@@ -378,21 +412,7 @@ public class Main extends Application {
         }
     }
 
-    public void action(){
-        addTurnBtn.setOnAction(e -> {
-
-            // Solo está para uno
-            if (controller.getPatients(1).size() == 6){
-                controller.deleteFirst(1);
-            }
-
-            NewTurn newTurn = new NewTurn();
-            newTurn.scene(primaryStage, controller);
-            primaryStage.setScene(newTurn.getScene());
-        });
-    }
-
-    public void threads(){
+    public void threads() {
         ThreadsPatient thPatient1 = new ThreadsPatient(controller, 1);
         ThreadsPatient thPatient2 = new ThreadsPatient(controller, 2);
         ThreadsPatient thPatient3 = new ThreadsPatient(controller, 3);
@@ -408,16 +428,143 @@ public class Main extends Application {
         tp3.start();
         tp4.start();
 
-        try{
-            turnLabel1.setText(controller.getTurn(1).getFirst() + "\n" + thPatient1.getTime().getFirst() + "s ");
-            turnLabel2.setText(controller.getTurn(2).getFirst() + "\n" + thPatient2.getTime().get(1) + "s ");
-            turnLabel3.setText(controller.getTurn(3).getFirst() + "\n" + thPatient3.getTime().get(2) + "s ");
-            turnLabel4.setText(controller.getTurn(4).getFirst() + "\n" + thPatient4.getTime().get(3) + "s ");
-        } catch (Exception _) {}
+        timeline1 = createOrUpdateTimer(turnLabel1, controller.getTime1(), 1);
+        timeline2 = createOrUpdateTimer(turnLabel2, controller.getTime2(), 2);
+        timeline3 = createOrUpdateTimer(turnLabel3, controller.getTime3(), 3);
+        timeline4 = createOrUpdateTimer(turnLabel4, controller.getTime4(), 4);
+
+        timeline1.play();
+        timeline2.play();
+        timeline3.play();
+        timeline4.play();
     }
 
-    public void setController(PatientController controller) {
+    private Timeline createOrUpdateTimer(Label label, int timeLimit, int numList) {
+        Timeline timeline = new Timeline();
+        int[] currentTime = {getTimerState(numList)}; // Obtiene el estado inicial del temporizador
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), event -> {
+            try {
+                // Actualiza el texto del label con el turno y el tiempo actual
+                label.setText(controller.getTurn(numList).getFirst() + "\n" + currentTime[0] + " s");
+                currentTime[0]++; // Incrementa el tiempo actual
+
+                // Guarda el estado actual del temporizador
+                updateTimerState(numList, currentTime[0], numList);
+
+                // Si se alcanza el límite de tiempo
+                if (currentTime[0] > timeLimit) {
+                    controller.deleteFirst(numList); // Elimina el primer turno
+                    updateTableView(numList); // Actualiza la tabla
+                    currentTime[0] = 0; // Reinicia el contador a 0
+                    updateTimerState(numList, 0, numList); // Reinicia el estado en el mapa
+                    timeline.playFromStart(); // Reinicia el temporizador
+                }
+            } catch (Exception e) {
+                // Manejo de excepciones (por ejemplo, si no hay más turnos)
+                currentTime[0] = 0; // Reinicia el contador
+                updateTimerState(numList, 0, numList); // Reinicia el estado en el mapa
+                label.setText("-"); // Muestra vacío si no hay turnos
+                timeline.stop(); // Detiene el temporizador
+            }
+        });
+
+        // Configura el timeline
+        timeline.getKeyFrames().clear();
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(Timeline.INDEFINITE); // Ciclos indefinidos
+        return timeline;
+    }
+
+    private void updateTableView(int numList) {
+        List<Patient> updatedPatients = controller.getPatients(numList);
+        switch (numList) {
+            case 1 -> table1.getItems().setAll(updatedPatients);
+            case 2 -> table2.getItems().setAll(updatedPatients);
+            case 3 -> table3.getItems().setAll(updatedPatients);
+            case 4 -> table4.getItems().setAll(updatedPatients);
+        }
+    }
+
+
+    public void action() {
+        addTurnBtn.setOnAction(e -> {
+            if (controller.getPatients(1).size() == 6) {
+                controller.deleteFirst(1);
+            }
+
+            NewTurn newTurn = new NewTurn();
+            newTurn.scene(primaryStage, controller, timerId, currentTime, timerId2, currentTime2, timerId3, currentTime3, timerId4, currentTime4);
+            primaryStage.setScene(newTurn.getScene());
+
+            // Actualizar la vista y los temporizadores
+            table1.setItems(FXCollections.observableArrayList(controller.getPatients(1)));
+            table2.setItems(FXCollections.observableArrayList(controller.getPatients(2)));
+            table3.setItems(FXCollections.observableArrayList(controller.getPatients(3)));
+            table4.setItems(FXCollections.observableArrayList(controller.getPatients(4)));
+
+            timeline1.playFromStart(); // Continúa desde el punto actual o se actualiza según sea necesario
+            timeline2.playFromStart();
+            timeline3.playFromStart();
+            timeline4.playFromStart();
+        });
+    }
+
+    private void updateTimerState(int timerId, int currentTime, int numList) {
+        switch (numList){
+            case 1 -> {
+                this.timerId = timerId;
+                this.currentTime = currentTime;
+            }
+            case 2 -> {
+                timerId2 = timerId;
+                currentTime2 = currentTime;
+            }
+            case 3 -> {
+                timerId3 = timerId;
+                currentTime3 = currentTime;
+            }
+            case 4 -> {
+                timerId4 = timerId;
+                currentTime4 = currentTime;
+            }
+        }
+        timerStates.put(timerId, currentTime);
+    }
+
+    // Obtiene el estado del temporizador
+    private int getTimerState(int timerId) {
+        return timerStates.getOrDefault(timerId, 0);
+    }
+
+    public void setController(PatientController controller, int timerId, int currentTime, int timerId2, int currentTime2, int timerId3, int currentTime3, int timerId4, int currentTime4) {
         this.controller = controller;
+        this.timerId = timerId;
+        this.currentTime = currentTime;
+        this.timerId2 = timerId2;
+        this.currentTime2 = currentTime2;
+        this.timerId3 = timerId3;
+        this.currentTime3 = currentTime3;
+        this.timerId4 = timerId4;
+        this.currentTime4 = currentTime4;
+
+        updateTimerState(timerId, currentTime, 1);
+        updateTimerState(timerId2, currentTime2, 2);
+        updateTimerState(timerId3, currentTime3, 3);
+        updateTimerState(timerId4, currentTime4, 4);
+
+        action();
+    }
+
+    private void handleTurnExpiration(int numList, Label label, TableView<Patient> table, int timeLimit) {
+        // Eliminar el primer turno
+        controller.deleteFirst(numList);
+
+        // Actualizar la tabla
+        table.setItems(FXCollections.observableArrayList(controller.getPatients(numList)));
+
+        // Restablecer el texto del turno
+        label.setText("-\n" + timeLimit + " s");
     }
 
     public static void main(String[] args) {
