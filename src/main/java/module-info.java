@@ -5,5 +5,6 @@ module co.edu.uptc.project1priorityqueues {
     requires com.google.gson;
 
     opens co.edu.uptc.project1priorityqueues.model to javafx.base, com.google.gson;
+    opens co.edu.uptc.project1priorityqueues.logic to com.google.gson;
     exports co.edu.uptc.project1priorityqueues.view;
 }

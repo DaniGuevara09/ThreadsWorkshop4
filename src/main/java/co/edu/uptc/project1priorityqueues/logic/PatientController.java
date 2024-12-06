@@ -1,8 +1,6 @@
 package co.edu.uptc.project1priorityqueues.logic;
 
 import co.edu.uptc.project1priorityqueues.model.Patient;
-import javafx.scene.image.Image;
-
 import java.util.*;
 
 public class PatientController {
@@ -22,11 +20,17 @@ public class PatientController {
     private int time2;
     private int time3;
 
+    private Config config;
+    private LogManager logManager;
+
     public PatientController() {
         allPatients = new ArrayList<>();
     }
 
     public PatientController(Comparator<Patient> comparator) {
+        this.config = Config.load("src/main/java/co/edu/uptc/project1priorityqueues/persistence/config.json");
+        this.logManager = new LogManager(config.logFilePath);
+
         allPatients = new ArrayList<>();
         persistence = new PatientPersistence();
         allPatients = persistence.loadPatientsFromFile();
@@ -34,12 +38,11 @@ public class PatientController {
         this.patients1 = new PriorityQueue<>(comparator);
         this.patients2 = new PriorityQueue<>(comparator);
         this.patients3 = new PriorityQueue<>(comparator);
-        //patients1 = new TreeSet<>(comparator);
 
-        contDisabled = 1;
-        contPregnant = 1;
-        contAge = 1;
-        contOther = 1;
+        contDisabled = 0;
+        contPregnant = 0;
+        contAge = 0;
+        contOther = 0;
 
         time1 = 0;
         time2 = 0;
@@ -86,16 +89,26 @@ public class PatientController {
         return patientList;
     }
 
-    public void deleteFirst(int numList){
-        //patients1.pollFirst();
-        switch (numList){
-            case 1 -> patients1.poll();
-            case 2 -> patients2.poll();
-            case 3 -> patients3.poll();
+    public void deleteFirst(int numList) {
+        Patient removedPatient = null;
+
+        switch (numList) {
+            case 1 -> removedPatient = patients1.poll();
+            case 2 -> removedPatient = patients2.poll();
+            case 3 -> removedPatient = patients3.poll();
         }
+
+        if (removedPatient != null) {
+            logManager.addLog(Map.of(
+                    "event", "deleteFirst",
+                    "queue", "patients" + numList,
+                    "removedPatient", removedPatient.getTurn()
+            ));
+        }
+        saveLogs();
     }
 
-    public String addPatient(boolean disabled, boolean pregnant, String ageRange){
+    public String addPatient(boolean disabled, boolean pregnant, String ageRange) {
         Patient newPatient = new Patient(disabled, pregnant, ageRange, timeRandom());
         String turn = newTurn(newPatient);
 
@@ -112,10 +125,24 @@ public class PatientController {
         }
 
         allPatients.add(newPatient);
-        PatientPersistence persistence = new PatientPersistence();
         persistence.savePatientsToFile(allPatients);
 
+        logManager.addLog(Map.of(
+                "event", "addPatient",
+                "patient", Map.of(
+                        "turn", newPatient.getTurn(),
+                        "disabled", newPatient.isDisabled(),
+                        "pregnant", newPatient.isPregnant(),
+                        "ageRange", newPatient.getAgeRange(),
+                        "time", newPatient.getTime()
+                )
+        ));
+        saveLogs();
         return turn;
+    }
+
+    public void saveLogs() {
+        logManager.saveLogs();
     }
 
     public static int timeRandom(){
@@ -140,6 +167,11 @@ public class PatientController {
     }
 
     public void updateCont(){
+        contDisabled = 0;
+        contPregnant = 0;
+        contAge = 0;
+        contOther = 0;
+
         try {
             for (Patient patient : allPatients) {
                 if (patient.getTurn().contains("A")){
@@ -190,6 +222,10 @@ public class PatientController {
 
     public int getTime3() {
         return time3;
+    }
+
+    public LogManager getLogManager() {
+        return logManager;
     }
 
     public static class PatientComparator implements Comparator<Patient> {

@@ -1,0 +1,86 @@
+[
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients3",
+    "executionTimeInMillis": 0.049163
+  },
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients1",
+    "executionTimeInMillis": 0.395725
+  },
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients2",
+    "executionTimeInMillis": 0.112302
+  },
+  {
+    "event": "addPatient",
+    "patient": {
+      "ageRange": "18 - 59",
+      "turn": "D18",
+      "disabled": false,
+      "time": 11,
+      "pregnant": false
+    }
+  },
+  {
+    "activeThreads": 8,
+    "event": "executionTime",
+    "queue": "patients1",
+    "executionTimeInMillis": 0.071425
+  },
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients2",
+    "executionTimeInMillis": 0.10067
+  },
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients3",
+    "executionTimeInMillis": 0.04804
+  },
+  {
+    "queue": "patients1",
+    "event": "deleteFirst",
+    "removedPatient": "D18"
+  },
+  {
+    "event": "addPatient",
+    "patient": {
+      "ageRange": "18 - 59",
+      "turn": "D19",
+      "disabled": false,
+      "time": 11,
+      "pregnant": false
+    }
+  },
+  {
+    "activeThreads": 8,
+    "event": "executionTime",
+    "queue": "patients1",
+    "executionTimeInMillis": 0.062474
+  },
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients2",
+    "executionTimeInMillis": 0.106756
+  },
+  {
+    "activeThreads": 9,
+    "event": "executionTime",
+    "queue": "patients3",
+    "executionTimeInMillis": 0.050593
+  },
+  {
+    "queue": "patients1",
+    "event": "deleteFirst",
+    "removedPatient": "D19"
+  }
+]

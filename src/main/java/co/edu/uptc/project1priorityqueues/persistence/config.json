@@ -1,0 +1,6 @@
+{
+  "threads": 3,
+  "priorityQueues": 3,
+  "turnProcessingTime": 1000,
+  "logFilePath": "src/main/java/co/edu/uptc/project1priorityqueues/persistence/system_log.json"
+}

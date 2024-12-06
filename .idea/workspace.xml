@@ -7,7 +7,9 @@
     <list default="true" id="6aae1b04-5083-42a6-a635-6899221d4507" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/PatientPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/PatientPersistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/ThreadsPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/logic/ThreadsPatient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/persistence/PatientTurn.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/persistence/PatientTurn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +64,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/co/edu/uptc/project1priorityqueues/persistence" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="co.edu.uptc.project1priorityqueues.view.Main" />
@@ -109,7 +117,7 @@
       <workItem from="1733281109706" duration="1934000" />
       <workItem from="1733350570495" duration="10022000" />
       <workItem from="1733411481950" duration="26306000" />
-      <workItem from="1733486230802" duration="2117000" />
+      <workItem from="1733486230802" duration="8636000" />
     </task>
     <servers />
   </component>
